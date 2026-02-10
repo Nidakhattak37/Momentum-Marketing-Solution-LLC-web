@@ -1,10 +1,15 @@
 
+// Project types for Momentum Marketing Solution LLC
 export enum ViewType {
   HOME = 'home',
-  IMAGE = 'image',
-  VIDEO = 'video',
-  VOICE = 'voice',
-  CHAT = 'chat'
+  WHAT_WE_DO = 'what-we-do',
+  SERVICES = 'services',
+  INDUSTRIES = 'industries',
+  CONTACT = 'contact',
+  IMAGE_LAB = 'image-lab',
+  VIDEO_LAB = 'video-lab',
+  VOICE_LAB = 'voice-lab',
+  ASSISTANT = 'assistant',
 }
 
 export interface GeneratedImage {
@@ -24,7 +29,7 @@ export interface GeneratedVideo {
 export interface VoiceMessage {
   id: string;
   text: string;
-  audioUrl: string | null;
+  audioUrl: string;
   speaker: string;
 }
 

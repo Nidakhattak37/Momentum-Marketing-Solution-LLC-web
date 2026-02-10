@@ -126,11 +126,9 @@ export const geminiService = {
     const chat = ai.chats.create({
       model: 'gemini-3-flash-preview',
       config: {
-        systemInstruction: "You are Lumina, a creative AI assistant. You help users brainstorm visual ideas, write scripts, and explore creative concepts.",
+        systemInstruction: "You are the Lead Creative Strategist for Momentum Marketing Solution LLC. You help clients brainstorm high-impact marketing assets, write scripts for cinematic commercials, and optimize prompt engineering for brand consistency.",
       }
     });
-    // For this implementation we'll pass the message directly
-    // Real history would involve chat.history
     const response = await chat.sendMessage({ message });
     return response.text;
   }

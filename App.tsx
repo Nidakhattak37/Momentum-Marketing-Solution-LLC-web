@@ -1,60 +1,79 @@
 
 import React, { useState } from 'react';
-import { ViewType } from './types.ts';
 import Navbar from './components/Navbar.tsx';
 import Home from './components/sections/Home.tsx';
+import WhatWeDo from './components/sections/WhatWeDo.tsx';
+import Services from './components/sections/Services.tsx';
+import Industries from './components/sections/Industries.tsx';
+import Contact from './components/sections/Contact.tsx';
 import ImageStudio from './components/sections/ImageStudio.tsx';
 import VideoStudio from './components/sections/VideoStudio.tsx';
 import VoiceStudio from './components/sections/VoiceStudio.tsx';
 import Assistant from './components/sections/Assistant.tsx';
+import { ViewType } from './types.ts';
 
 const App: React.FC = () => {
-  const [currentView, setView] = useState<ViewType>(ViewType.HOME);
+  const [currentView, setCurrentView] = useState<ViewType>(ViewType.HOME);
 
+  // View router logic
   const renderView = () => {
     switch (currentView) {
       case ViewType.HOME:
-        return <Home setView={setView} />;
-      case ViewType.IMAGE:
+        return <Home setView={setCurrentView} />;
+      case ViewType.WHAT_WE_DO:
+        return <WhatWeDo />;
+      case ViewType.SERVICES:
+        return <Services />;
+      case ViewType.INDUSTRIES:
+        return <Industries />;
+      case ViewType.CONTACT:
+        return <Contact />;
+      case ViewType.IMAGE_LAB:
         return <ImageStudio />;
-      case ViewType.VIDEO:
+      case ViewType.VIDEO_LAB:
         return <VideoStudio />;
-      case ViewType.VOICE:
+      case ViewType.VOICE_LAB:
         return <VoiceStudio />;
-      case ViewType.CHAT:
+      case ViewType.ASSISTANT:
         return <Assistant />;
       default:
-        return <Home setView={setView} />;
+        return <Home setView={setCurrentView} />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-100 flex flex-col">
-      <Navbar currentView={currentView} setView={setView} />
-      
-      <main className="flex-1 relative">
-        <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[120px] rounded-full" />
-          <div className="absolute bottom-[10%] right-[-10%] w-[30%] h-[30%] bg-rose-500/5 blur-[120px] rounded-full" />
-        </div>
-        
-        <div className="relative z-10">
-          {renderView()}
-        </div>
+    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#9D00FF]/30 selection:text-white">
+      {/* Dynamic Navbar */}
+      <Navbar currentView={currentView} setView={setCurrentView} />
+
+      {/* Main Content Area */}
+      <main className="flex-1 overflow-x-hidden relative">
+        {renderView()}
       </main>
 
-      <footer className="py-12 border-t border-gray-900 bg-gray-950">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2 opacity-50">
-            <div className="w-6 h-6 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-md" />
-            <span className="font-bold">Lumina Studio</span>
+      {/* Global Immersive Background Effects */}
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute top-[20%] -right-[10%] w-[30%] h-[30%] bg-purple-500/10 blur-[120px] rounded-full" />
+        <div className="absolute -bottom-[10%] left-[20%] w-[50%] h-[50%] bg-pink-500/10 blur-[150px] rounded-full animate-pulse" />
+      </div>
+
+      {/* Footer Branding */}
+      <footer className="py-10 border-t border-white/5 bg-black/40 backdrop-blur-md">
+        <div className="max-w-[1600px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3">
+             <div className="w-8 h-8 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center">
+                <span className="text-white font-black text-sm italic">M</span>
+             </div>
+             <span className="text-sm font-black tracking-tighter text-zinc-400 uppercase italic">
+               MOMENTUM MARKETING SOLUTION LLC
+             </span>
           </div>
-          <div className="flex gap-8 text-sm text-gray-500 font-medium">
-            <a href="#" className="hover:text-white transition-colors">Documentation</a>
-            <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noopener" className="hover:text-white transition-colors">Billing Info</a>
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
+          <div className="flex gap-8">
+            <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">© 2025 ALL RIGHTS RESERVED</span>
+            <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest cursor-pointer hover:text-white transition-colors">PRIVACY POLICY</span>
+            <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest cursor-pointer hover:text-white transition-colors">TERMS OF SERVICE</span>
           </div>
-          <p className="text-gray-600 text-xs">© 2024 Lumina Creative. All rights generated.</p>
         </div>
       </footer>
     </div>

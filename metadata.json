@@ -1,8 +1,5 @@
 {
-  "name": "Lumina Creative Studio",
-  "description": "A high-end, multimodal AI creative suite for generating stunning images, cinematic videos, and natural voices using the latest Gemini models.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
+  "name": "New Project",
+  "description": "A fresh start for a new digital experience.",
+  "requestFramePermissions": []
 }
