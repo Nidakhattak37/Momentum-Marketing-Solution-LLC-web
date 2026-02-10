@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { geminiService } from '../../services/geminiService';
-import { GeneratedVideo } from '../../types';
+import { geminiService } from '../../services/geminiService.ts';
+import { GeneratedVideo } from '../../types.ts';
 
 const VideoStudio: React.FC = () => {
   const [prompt, setPrompt] = useState('');

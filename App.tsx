@@ -1,12 +1,12 @@
 
 import React, { useState } from 'react';
-import { ViewType } from './types';
-import Navbar from './components/Navbar';
-import Home from './components/sections/Home';
-import ImageStudio from './components/sections/ImageStudio';
-import VideoStudio from './components/sections/VideoStudio';
-import VoiceStudio from './components/sections/VoiceStudio';
-import Assistant from './components/sections/Assistant';
+import { ViewType } from './types.ts';
+import Navbar from './components/Navbar.tsx';
+import Home from './components/sections/Home.tsx';
+import ImageStudio from './components/sections/ImageStudio.tsx';
+import VideoStudio from './components/sections/VideoStudio.tsx';
+import VoiceStudio from './components/sections/VoiceStudio.tsx';
+import Assistant from './components/sections/Assistant.tsx';
 
 const App: React.FC = () => {
   const [currentView, setView] = useState<ViewType>(ViewType.HOME);

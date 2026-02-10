@@ -1,7 +1,7 @@
 
 import React, { useState, useRef } from 'react';
-import { geminiService } from '../../services/geminiService';
-import { VoiceMessage } from '../../types';
+import { geminiService } from '../../services/geminiService.ts';
+import { VoiceMessage } from '../../types.ts';
 
 const VoiceStudio: React.FC = () => {
   const [text, setText] = useState('');

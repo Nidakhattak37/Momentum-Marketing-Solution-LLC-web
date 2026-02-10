@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { geminiService } from '../../services/geminiService';
-import { GeneratedImage } from '../../types';
+import { geminiService } from '../../services/geminiService.ts';
+import { GeneratedImage } from '../../types.ts';
 
 const ImageStudio: React.FC = () => {
   const [prompt, setPrompt] = useState('');

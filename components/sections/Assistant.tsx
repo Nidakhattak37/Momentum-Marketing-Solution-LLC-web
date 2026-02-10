@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { geminiService } from '../../services/geminiService';
-import { ChatMessage } from '../../types';
+import { geminiService } from '../../services/geminiService.ts';
+import { ChatMessage } from '../../types.ts';
 
 const Assistant: React.FC = () => {
   const [input, setInput] = useState('');
