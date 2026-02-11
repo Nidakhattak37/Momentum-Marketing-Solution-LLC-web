@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
               <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
               <span className="text-[9px] font-black text-cyan-400 tracking-[0.3em] uppercase">Deployment Protocol</span>
             </div>
-            <h1 className="text-5xl md:text-7xl xl:text-[80px] font-black leading-tight lg:leading-none tracking-tighter uppercase flex flex-col">
+            <h1 className="text-3xl md:text-5xl xl:text-6xl font-black leading-tight lg:leading-none tracking-tighter uppercase flex flex-col">
               <span className="text-white">IGNITE YOUR</span>
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: brandGradient }}>
                 MOMENTUM.
@@ -167,14 +167,14 @@ const Contact: React.FC = () => {
                 type="submit"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="group relative w-full py-10 overflow-hidden rounded-[2.5rem] transition-all active:scale-[0.98]"
+                className="group relative w-full py-8 overflow-hidden rounded-[2.5rem] transition-all active:scale-[0.98]"
               >
                 <div className={`absolute inset-0 bg-white transition-all duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'}`} />
                 <div className={`absolute inset-0 transition-all duration-500 ${isHovered ? 'opacity-100 scale-105' : 'opacity-0'}`} style={{ backgroundImage: brandGradient }} />
                 
                 <span className={`relative flex items-center justify-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] transition-colors duration-500 ${isHovered ? 'text-white' : 'text-black'}`}>
                   INITIALIZE DEPLOYMENT
-                  <svg className={`w-6 h-6 transform transition-all duration-500 ${isHovered ? 'translate-x-3 opacity-100' : 'translate-x-0 opacity-0'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className={`w-5 h-5 transform transition-all duration-500 ${isHovered ? 'translate-x-3 opacity-100' : 'translate-x-0 opacity-0'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>

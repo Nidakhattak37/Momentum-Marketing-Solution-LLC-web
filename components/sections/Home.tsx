@@ -103,7 +103,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                </div>
             </div>
             
-            <h1 className="text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-black leading-tight lg:leading-[1.1] tracking-tight uppercase flex flex-col select-none overflow-hidden">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black leading-tight lg:leading-[1.1] tracking-tight uppercase flex flex-col select-none overflow-hidden">
               <span className="text-white drop-shadow-xl animate-data-wipe">ACCELERATE YOUR</span>
               <span className="bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(0,229,255,0.2)] animate-data-wipe-delayed" style={{ backgroundImage: brandGradient }}>
                 MARKET MOMENTUM.
@@ -241,7 +241,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-end mb-24">
            <div className="text-left">
               <span className="text-[10px] font-black text-cyan-400 uppercase tracking-[0.4em] mb-4 lg:mb-6 block">DEPLOYMENT_LOGIC</span>
-              <h2 className="text-4xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none">GROWTH <br /> METHODOLOGY.</h2>
+              <h2 className="text-3xl lg:text-4xl font-black text-white uppercase tracking-tighter leading-none">GROWTH <br /> METHODOLOGY.</h2>
            </div>
            <p className="text-zinc-500 text-sm lg:text-base font-medium leading-relaxed max-w-md text-left lg:text-right ml-auto">
              Our recursively optimized deployment framework is engineered to synchronize brand authority with modern algorithmic shifts at enterprise scale.
@@ -273,7 +273,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
          
          <div className="px-12 lg:px-20 space-y-20 relative z-10">
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
-               <h2 className="text-5xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tighter leading-[0.9] lg:leading-[0.85]">SECTOR <br /> DOMINANCE.</h2>
+               <h2 className="text-4xl lg:text-6xl xl:text-7xl font-black uppercase tracking-tighter leading-[0.9] lg:leading-[0.85]">SECTOR <br /> DOMINANCE.</h2>
                <div className="flex flex-col items-start lg:items-end gap-6">
                   <p className="text-zinc-600 text-xs font-bold uppercase tracking-[0.3em] lg:text-right max-w-xs">ENGINEERING GROWTH ACROSS HIGH-VELOCITY MARKET SECTORS.</p>
                   <button onClick={scrollToContact} className="w-full lg:w-auto px-10 py-5 bg-black text-white rounded-xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-all shadow-xl">Request Spec</button>
@@ -296,7 +296,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
       <section className="py-32 lg:py-40">
          <div className="text-center mb-24">
             <span className="text-[10px] font-black text-cyan-400 uppercase tracking-[0.4em] mb-4 lg:mb-6 block">INFRASTRUCTURE</span>
-            <h2 className="text-4xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-tight lg:leading-none mb-6">CORE PERFORMANCE ENGINES.</h2>
+            <h2 className="text-3xl lg:text-5xl font-black text-white uppercase tracking-tighter leading-tight lg:leading-none mb-6">CORE PERFORMANCE ENGINES.</h2>
          </div>
 
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

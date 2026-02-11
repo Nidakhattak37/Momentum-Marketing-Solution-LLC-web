@@ -11,10 +11,10 @@ const WhatWeDo: React.FC = () => {
   return (
     <div className="max-w-[1600px] mx-auto p-6 py-20 animate-in fade-in duration-700">
       <div className="mb-20">
-        <h1 className="text-6xl font-black uppercase tracking-tighter text-white mb-6">
+        <h1 className="text-4xl font-black uppercase tracking-tighter text-white mb-6 leading-tight">
           Beyond <br /> Marketing
         </h1>
-        <p className="text-zinc-500 text-xl max-w-2xl font-light">
+        <p className="text-zinc-500 text-lg max-w-2xl font-light">
           We leverage the frontier of multimodal AI to build brands that don't just compete—they dominate their category through relentless innovation.
         </p>
       </div>
@@ -30,8 +30,8 @@ const WhatWeDo: React.FC = () => {
       </div>
 
       <div className="mt-24 p-12 bg-white text-black rounded-[3rem] flex flex-col md:flex-row items-center justify-between gap-8">
-        <h2 className="text-3xl font-black uppercase tracking-tighter text-center md:text-left">Ready to redefine your creative workflow?</h2>
-        <button className="px-12 py-5 bg-black text-white rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all">Start Now</button>
+        <h2 className="text-2xl font-black uppercase tracking-tighter text-center md:text-left">Ready to redefine your creative workflow?</h2>
+        <button className="px-10 py-4 bg-black text-white rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all text-sm">Start Now</button>
       </div>
     </div>
   );
