@@ -44,81 +44,114 @@ const App: React.FC = () => {
     }
   };
 
+  const footerNav = [
+    { 
+      title: 'PLATFORM', 
+      links: [
+        { label: 'HOME', id: ViewType.HOME },
+        { label: 'WHAT WE DO', id: ViewType.WHAT_WE_DO },
+        { label: 'SERVICES', id: ViewType.SERVICES },
+        { label: 'INDUSTRIES', id: ViewType.INDUSTRIES },
+      ]
+    },
+    { 
+      title: 'AI LABS', 
+      links: [
+        { label: 'IMAGE LAB', id: ViewType.IMAGE_LAB },
+        { label: 'VIDEO LAB', id: ViewType.VIDEO_LAB },
+        { label: 'VOICE VAULT', id: ViewType.VOICE_LAB },
+        { label: 'ORACLE SYNC', id: ViewType.LIVE_SYNC },
+      ]
+    },
+    { 
+      title: 'INDUSTRIES', 
+      links: [
+        { label: 'HEALTH', id: ViewType.INDUSTRIES },
+        { label: 'EDUCATION', id: ViewType.INDUSTRIES },
+        { label: 'E-COMMERCE', id: ViewType.INDUSTRIES },
+        { label: 'REAL ESTATE', id: ViewType.INDUSTRIES },
+      ]
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-[#020202] text-gray-100 flex flex-col selection:bg-[#00A3FF]/30 selection:text-white cursor-default">
-      {/* High-fidelity cursor follower */}
+    <div className="min-h-screen bg-[#020202] text-gray-100 flex flex-col selection:bg-white/10 selection:text-white cursor-none scanline relative">
       <MouseFollower />
 
       <Navbar currentView={currentView} setView={setView} />
       
       <main className="flex-1 relative">
-        {/* Advanced Kinetic Background */}
         <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
           <div className="absolute inset-0 bg-[#000000]" />
-          
-          {/* Chromatic Accent Blurs */}
-          <div className="absolute top-[10%] left-[20%] w-[60%] h-[60%] bg-[#00A3FF]/10 blur-[180px] rounded-full animate-pulse" style={{ animationDuration: '12s' }} />
-          <div className="absolute bottom-[10%] right-[15%] w-[50%] h-[50%] bg-[#FF00E5]/10 blur-[180px] rounded-full animate-pulse" style={{ animationDuration: '18s' }} />
-          
-          {/* Grid Texture */}
-          <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)`, backgroundSize: '40px 40px'}}></div>
+          <div className="absolute top-[0%] left-[-10%] w-[70%] h-[70%] bg-blue-500/[0.03] blur-[200px] rounded-full animate-pulse" style={{ animationDuration: '15s' }} />
+          <div className="absolute inset-0 opacity-[0.05] animate-grid-flow" 
+               style={{
+                 backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+                 backgroundSize: '60px 60px'
+               }} />
         </div>
         
         <div className="relative z-10">
           {renderView()}
 
-          {/* Persistent Contact Section */}
           {(currentView === ViewType.HOME || currentView === ViewType.WHAT_WE_DO || currentView === ViewType.INDUSTRIES || currentView === ViewType.SERVICES) && (
-            <div className="mt-20 border-t border-white/5 bg-gradient-to-b from-transparent to-black/50">
+            <div className="mt-20 border-t border-white/5">
                <Contact />
             </div>
           )}
         </div>
       </main>
 
-      <footer className="py-16 border-t border-white/5 bg-black/95 relative z-10">
-        <div className="max-w-[1600px] mx-auto px-8 flex flex-col lg:flex-row justify-between items-start gap-12">
-          <div className="space-y-6">
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8 bg-gradient-to-tr from-[#00A3FF] via-[#9D00FF] to-[#FF00E5] rounded-lg" />
-              <span className="font-black tracking-tighter text-white uppercase italic text-xl">MOMENTUM.</span>
+      <footer className="bg-black py-24 border-t border-white/5 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+            <div className="lg:col-span-5 space-y-10">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-gradient-to-br from-[#00A3FF] via-[#9D00FF] to-[#FF00E5] text-white rounded-lg flex items-center justify-center font-black shadow-lg">M</div>
+                <span className="text-2xl font-black uppercase tracking-tighter">MOMENTUM.</span>
+              </div>
+              <p className="text-zinc-500 max-w-sm text-lg font-medium leading-relaxed">
+                The global benchmark for high-performance marketing architecture. Engineering dominance through recursive growth cycles.
+              </p>
+              <div className="flex flex-col gap-2">
+                <span className="text-[10px] font-black text-zinc-700 uppercase tracking-widest">Connect Node</span>
+                <a href="mailto:info@mymomentumsolutions.com" className="text-xl font-bold text-white hover:text-blue-500 transition-colors underline underline-offset-8 decoration-white/10">info@mymomentumsolutions.com</a>
+              </div>
             </div>
-            <p className="text-zinc-500 max-w-sm text-sm font-medium leading-relaxed">
-              Engineering the future of digital dominance. Momentum Marketing Solution LLC is the global hub for high-performance creative technology.
-            </p>
+
+            <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
+              {footerNav.map((group, i) => (
+                <div key={i} className="space-y-8">
+                  <h4 className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em]">{group.title}</h4>
+                  <ul className="space-y-4">
+                    {group.links.map((link, j) => (
+                      <li key={j}>
+                        <button 
+                          onClick={() => setView(link.id)}
+                          className="text-[11px] font-black text-zinc-500 hover:text-white transition-all uppercase tracking-widest block"
+                        >
+                          {link.label}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-16">
-             <div className="space-y-4">
-                <h5 className="text-[10px] font-black text-white tracking-widest uppercase">Contact</h5>
-                <ul className="space-y-2 text-sm text-zinc-500 font-medium">
-                   <li><a href="mailto:info@mymomentumsolutions.com" className="hover:text-white transition-colors">info@mymomentumsolutions.com</a></li>
-                   <li>Remote First • Global Operations</li>
-                </ul>
-             </div>
-             <div className="space-y-4">
-                <h5 className="text-[10px] font-black text-white tracking-widest uppercase">Agency</h5>
-                <ul className="space-y-2 text-sm text-zinc-500 font-medium">
-                   <li><button onClick={() => setView(ViewType.SERVICES)} className="hover:text-white transition-colors">Services</button></li>
-                   <li><button onClick={() => setView(ViewType.INDUSTRIES)} className="hover:text-white transition-colors">Industries</button></li>
-                   <li><button onClick={() => setView(ViewType.WHAT_WE_DO)} className="hover:text-white transition-colors">Process</button></li>
-                </ul>
-             </div>
-             <div className="space-y-4">
-                <h5 className="text-[10px] font-black text-white tracking-widest uppercase">Social</h5>
-                <ul className="space-y-2 text-sm text-zinc-500 font-medium">
-                   <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
-                   <li><a href="#" className="hover:text-white transition-colors">X (Twitter)</a></li>
-                </ul>
-             </div>
+          <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex items-center gap-6">
+               <span className="text-[10px] font-black text-zinc-700 tracking-[0.3em] uppercase">© 2024 MOMENTUM</span>
+               <div className="w-1 h-1 bg-zinc-800 rounded-full" />
+               <span className="text-[10px] font-black text-zinc-700 tracking-[0.3em] uppercase">EST. 2024</span>
+            </div>
+            <div className="flex gap-10">
+               {['LinkedIn', 'Twitter', 'Github'].map(social => (
+                 <a key={social} href="#" className="text-[10px] font-black text-zinc-500 hover:text-white transition-colors uppercase tracking-[0.2em]">{social}</a>
+               ))}
+            </div>
           </div>
-        </div>
-        <div className="max-w-[1600px] mx-auto px-8 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-           <p className="text-zinc-600 text-[9px] font-black tracking-widest uppercase">© 2024 MOMENTUM MARKETING SOLUTION LLC. ALL RIGHTS RESERVED.</p>
-           <div className="flex gap-6 text-[9px] font-black text-zinc-500 tracking-widest uppercase">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-           </div>
         </div>
       </footer>
     </div>

@@ -30,13 +30,13 @@ const Contact: React.FC = () => {
               <div className="w-1.5 h-1.5 bg-[#FF00E5] rounded-full animate-pulse" />
               <span className="text-[9px] font-black text-[#FF00E5] tracking-[0.3em] uppercase">Deployment Protocol</span>
             </div>
-            <h1 className="text-7xl xl:text-[90px] font-black leading-none tracking-tighter uppercase italic flex flex-col">
+            <h1 className="text-7xl xl:text-[90px] font-black leading-none tracking-tighter uppercase flex flex-col">
               <span className="text-white">IGNITE YOUR</span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00A3FF] via-[#9D00FF] to-[#FF00E5]">
                 MOMENTUM.
               </span>
             </h1>
-            <p className="text-zinc-500 text-xl font-medium max-w-lg leading-relaxed">
+            <p className="text-zinc-500 text-xl font-semibold max-w-lg leading-relaxed">
               Ready to redefine your market position? Initiate a briefing and our lead strategists will align with your objectives within 24 hours.
             </p>
           </div>
@@ -44,11 +44,11 @@ const Contact: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div className="p-6 bg-white/5 border border-white/5 rounded-3xl hover:border-white/20 transition-all group">
               <h4 className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-4">Direct Sync</h4>
-              <p className="text-lg font-black text-white italic tracking-tighter group-hover:text-blue-400 transition-colors cursor-pointer">info@mymomentumsolutions.com</p>
+              <p className="text-lg font-black text-white tracking-tighter group-hover:text-blue-400 transition-colors cursor-pointer">info@mymomentumsolutions.com</p>
             </div>
             <div className="p-6 bg-white/5 border border-white/5 rounded-3xl hover:border-white/20 transition-all group">
               <h4 className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-4">Secure Audio</h4>
-              <p className="text-lg font-black text-white italic tracking-tighter group-hover:text-pink-500 transition-colors cursor-pointer">+1 (888) MOMENTUM</p>
+              <p className="text-lg font-black text-white tracking-tighter group-hover:text-pink-500 transition-colors cursor-pointer">+1 (888) MOMENTUM</p>
             </div>
           </div>
 
@@ -68,11 +68,8 @@ const Contact: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column: High-Performance Form */}
+        {/* Right Column: Briefing Form */}
         <div className="lg:col-span-7 bg-[#0a0a0a] border border-white/10 rounded-[3rem] p-8 md:p-16 shadow-2xl relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#00A3FF]/5 blur-[120px] rounded-full pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#FF00E5]/5 blur-[120px] rounded-full pointer-events-none" />
-          
           {submitted ? (
             <div className="min-h-[600px] flex flex-col items-center justify-center text-center animate-in zoom-in duration-500">
               <div className="relative mb-12">
@@ -81,7 +78,7 @@ const Contact: React.FC = () => {
                   <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                 </div>
               </div>
-              <h3 className="text-5xl font-black text-white italic tracking-tighter uppercase mb-6">Deployment Synced.</h3>
+              <h3 className="text-5xl font-black text-white tracking-tighter uppercase mb-6">Deployment Synced.</h3>
               <p className="text-zinc-500 font-medium max-w-sm mx-auto text-lg leading-relaxed">
                 Strategy protocol initiated. A Momentum representative is reviewing your objectives.
               </p>
@@ -104,7 +101,7 @@ const Contact: React.FC = () => {
                     required type="text" value={formState.name}
                     onChange={e => setFormState({...formState, name: e.target.value})}
                     placeholder="ENTER NAME"
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all"
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all"
                   />
                 </div>
                 <div className="space-y-4">
@@ -116,7 +113,7 @@ const Contact: React.FC = () => {
                     required type="email" value={formState.email}
                     onChange={e => setFormState({...formState, email: e.target.value})}
                     placeholder="EMAIL@DOMAIN.COM"
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all"
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all"
                   />
                 </div>
               </div>
@@ -131,7 +128,7 @@ const Contact: React.FC = () => {
                     type="text" value={formState.org}
                     onChange={e => setFormState({...formState, org: e.target.value})}
                     placeholder="COMPANY NAME"
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all"
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all"
                   />
                 </div>
                 <div className="space-y-4">
@@ -142,7 +139,7 @@ const Contact: React.FC = () => {
                   <select 
                     value={formState.budget}
                     onChange={e => setFormState({...formState, budget: e.target.value})}
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic focus:border-blue-500 outline-none transition-all appearance-none cursor-pointer"
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white focus:border-blue-500 outline-none transition-all appearance-none cursor-pointer"
                   >
                     <option value="10k-50k" className="bg-black">10K - 50K USD</option>
                     <option value="50k-100k" className="bg-black">50K - 100K USD</option>
@@ -154,36 +151,13 @@ const Contact: React.FC = () => {
 
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <label className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Operational Focus</label>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  {['seo', 'ppc', 'web', 'full'].map((svc) => (
-                    <button
-                      key={svc}
-                      type="button"
-                      onClick={() => setFormState({...formState, service: svc})}
-                      className={`px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
-                        formState.service === svc 
-                        ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20' 
-                        : 'bg-white/5 border border-white/10 text-zinc-600 hover:text-white hover:border-white/20'
-                      }`}
-                    >
-                      {svc === 'full' ? 'FULL ARCHITECTURE' : svc.toUpperCase() + ' STRATEGY'}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
                   <label className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Objectives</label>
-                  <span className="text-[8px] font-mono text-zinc-800 uppercase">DAT_FLD_05</span>
                 </div>
                 <textarea 
                   required rows={3} value={formState.message}
                   onChange={e => setFormState({...formState, message: e.target.value})}
                   placeholder="DESCRIBE YOUR CURRENT PERFORMANCE FRICTION POINTS..."
-                  className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all resize-none"
+                  className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all resize-none"
                 />
               </div>
 
@@ -203,11 +177,6 @@ const Contact: React.FC = () => {
                   </svg>
                 </span>
               </button>
-              
-              <div className="flex justify-between items-center pt-4 opacity-30">
-                <span className="text-[8px] font-mono uppercase tracking-widest text-zinc-500">MOMENTUM_OS_V2.1.0</span>
-                <span className="text-[8px] font-mono uppercase tracking-widest text-zinc-500">ENCRYPTED_DATA_TRANSIT</span>
-              </div>
             </form>
           )}
         </div>

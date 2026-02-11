@@ -56,7 +56,6 @@ const LiveStrategist: React.FC = () => {
             const processor = inputCtx.createScriptProcessor(4096, 1, 1);
             processor.onaudioprocess = (e) => {
               const input = e.inputBuffer.getChannelData(0);
-              // Simple volume calc for UI
               let sum = 0;
               for(let i=0; i<input.length; i++) sum += input[i]*input[i];
               setVolume(Math.sqrt(sum/input.length));
@@ -116,18 +115,17 @@ const LiveStrategist: React.FC = () => {
       <div className="space-y-4">
         <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-1 rounded-full">
            <div className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-emerald-500 animate-pulse' : 'bg-zinc-600'}`} />
-           <span className="text-[9px] font-black text-blue-400 tracking-widest uppercase italic">Neural Audio Sync</span>
+           <span className="text-[9px] font-black text-blue-400 tracking-widest uppercase">Neural Audio Sync</span>
         </div>
-        <h1 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none">
+        <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter uppercase leading-none">
           THE MOMENTUM <br /> <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00A3FF] to-[#FF00E5]">ORACLE.</span>
         </h1>
-        <p className="text-zinc-500 max-w-lg mx-auto font-medium">
+        <p className="text-zinc-500 max-w-lg mx-auto font-semibold">
           Initialize a zero-latency audio briefing with our lead AI strategist. Real-time market diagnostics and creative alignment.
         </p>
       </div>
 
       <div className="relative flex justify-center py-20">
-         {/* Visualizer */}
          <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
             {Array.from({length: 40}).map((_, i) => (
                 <div 
@@ -147,7 +145,7 @@ const LiveStrategist: React.FC = () => {
             className={`relative z-10 w-48 h-48 rounded-full flex flex-col items-center justify-center transition-all duration-500 border-4 ${
                 isActive 
                 ? 'bg-red-500/10 border-red-500 shadow-[0_0_50px_rgba(239,68,68,0.3)]' 
-                : 'bg-white border-transparent text-black hover:scale-105'
+                : 'bg-white border-transparent text-black hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.1)]'
             }`}
          >
             {isConnecting ? (
@@ -169,7 +167,7 @@ const LiveStrategist: React.FC = () => {
       {isActive && (
         <div className="space-y-4 max-w-xl mx-auto bg-white/5 p-8 rounded-[2rem] border border-white/10 backdrop-blur-xl animate-in slide-in-from-bottom-4">
            <div className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest border-b border-white/5 pb-4 mb-4">Live Transcription Stream</div>
-           <p className="text-zinc-300 font-medium italic min-h-[40px]">
+           <p className="text-zinc-300 font-semibold min-h-[40px]">
              {transcription.length > 0 ? transcription.join(' ') : 'Oracle is listening...'}
            </p>
         </div>
@@ -178,19 +176,19 @@ const LiveStrategist: React.FC = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-white/5 opacity-40">
          <div className="flex flex-col items-center gap-1">
             <span className="text-[8px] font-black text-zinc-700 uppercase tracking-widest">Protocol</span>
-            <span className="text-xs font-bold text-white uppercase italic">GEMINI_2.5_LIVE</span>
+            <span className="text-xs font-bold text-white uppercase">GEMINI_2.5_LIVE</span>
          </div>
          <div className="flex flex-col items-center gap-1">
             <span className="text-[8px] font-black text-zinc-700 uppercase tracking-widest">Latency</span>
-            <span className="text-xs font-bold text-white uppercase italic">&lt; 150MS</span>
+            <span className="text-xs font-bold text-white uppercase">&lt; 150MS</span>
          </div>
          <div className="flex flex-col items-center gap-1">
             <span className="text-[8px] font-black text-zinc-700 uppercase tracking-widest">Encryption</span>
-            <span className="text-xs font-bold text-white uppercase italic">AES-256 SYNC</span>
+            <span className="text-xs font-bold text-white uppercase">AES-256 SYNC</span>
          </div>
          <div className="flex flex-col items-center gap-1">
             <span className="text-[8px] font-black text-zinc-700 uppercase tracking-widest">Integrity</span>
-            <span className="text-xs font-bold text-emerald-500 uppercase italic">OPERATIONAL</span>
+            <span className="text-xs font-bold text-emerald-500 uppercase">OPERATIONAL</span>
          </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ const Services: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto p-6 py-20 animate-in fade-in duration-700">
       <div className="mb-20">
-        <h1 className="text-6xl font-black uppercase italic tracking-tighter text-white mb-6">Our Services</h1>
+        <h1 className="text-6xl font-black uppercase tracking-tighter text-white mb-6">Our Services</h1>
         <p className="text-zinc-500 text-xl max-w-2xl font-light">The intersection of human creativity and artificial intelligence.</p>
       </div>
 

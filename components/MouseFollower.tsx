@@ -5,9 +5,7 @@ const MouseFollower: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   
-  // Real mouse coordinates
   const mouseRef = useRef({ x: 0, y: 0 });
-  // Interpolated (smooth) coordinates for the ring
   const ringRef = useRef({ x: 0, y: 0 });
   
   const dotElem = useRef<HTMLDivElement>(null);
@@ -16,7 +14,6 @@ const MouseFollower: React.FC = () => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // Adjust mouse position for 90% zoom factor
       mouseRef.current = { x: e.clientX / 0.9, y: e.clientY / 0.9 };
     };
 
@@ -41,8 +38,7 @@ const MouseFollower: React.FC = () => {
     };
 
     const animate = () => {
-      // Lerp (Linear Interpolation) for the smooth ring follow
-      const lerpFactor = 0.12;
+      const lerpFactor = 0.15;
       ringRef.current.x += (mouseRef.current.x - ringRef.current.x) * lerpFactor;
       ringRef.current.y += (mouseRef.current.y - ringRef.current.y) * lerpFactor;
 
@@ -74,59 +70,42 @@ const MouseFollower: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
-      {/* Central Multi-color Point */}
+      {/* Central Precision Point */}
       <div 
         ref={dotElem}
-        className={`absolute -left-1.5 -top-1.5 w-3 h-3 rounded-full z-30 transition-all duration-300 ease-out shadow-lg ${
+        className={`absolute -left-1 -top-1 w-2 h-2 bg-white rounded-full z-30 transition-all duration-200 ${
           isHovering ? 'scale-0 opacity-0' : 'opacity-100'
         }`}
-        style={{
-          background: 'linear-gradient(45deg, #00A3FF, #9D00FF, #FF00E5)',
-          boxShadow: '0 0 10px rgba(157, 0, 255, 0.5)'
-        }}
       />
 
-      {/* Kinetic Multi-color Outer Ring */}
+      {/* High-Tech Precision Ring */}
       <div 
         ref={ringElem}
-        className={`absolute -left-6 -top-6 w-12 h-12 rounded-full z-20 flex items-center justify-center transition-all duration-500 ease-out will-change-transform ${
-          isHovering ? 'scale-[2.2]' : 'scale-100'
+        className={`absolute -left-5 -top-5 w-10 h-10 rounded-full z-20 flex items-center justify-center border transition-all duration-300 ease-out will-change-transform ${
+          isHovering ? 'scale-[1.8] border-white' : 'scale-100 border-white/20'
         } ${isClicked ? 'scale-[0.85]' : ''}`}
         style={{
-          borderWidth: '2px',
-          borderStyle: 'solid',
-          // Conic gradient creates a spectrum around the circle border
-          borderImage: 'conic-gradient(#00A3FF, #9D00FF, #FF00E5, #00A3FF) 1',
-          mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          maskComposite: 'exclude',
-          WebkitMaskComposite: 'destination-out',
-          background: isHovering 
-            ? 'radial-gradient(circle, rgba(157, 0, 255, 0.1) 0%, transparent 70%)' 
-            : 'transparent'
+          borderWidth: isHovering ? '1px' : '1px',
         }}
       >
-        {/* Colorful Pulsing Inner Detail */}
+        {/* Core Expansion */}
         <div 
-          className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${isHovering ? 'opacity-100 scale-125' : 'opacity-0 scale-50'}`} 
-          style={{ background: 'linear-gradient(to right, #00A3FF, #FF00E5)' }}
+          className={`w-1 h-1 bg-white rounded-full transition-all duration-300 ${isHovering ? 'scale-[4] opacity-10' : 'opacity-0 scale-0'}`} 
         />
         
-        {/* Hover label hint */}
+        {/* Label Hint */}
         {isHovering && (
-          <div className="absolute top-16 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] font-black tracking-[0.4em] uppercase italic animate-in fade-in slide-in-from-top-1">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00A3FF] to-[#FF00E5]">
-              DOMINATE_NODE
-            </span>
+          <div className="absolute top-14 left-1/2 -translate-x-1/2 whitespace-nowrap text-[8px] font-black tracking-[0.4em] uppercase text-white/40 animate-in fade-in slide-in-from-top-1">
+            SELECT
           </div>
         )}
       </div>
 
-      {/* Multi-color Atmospheric Glow (Ambient) */}
+      {/* Focal Ambient Glow */}
       <div 
-        className="absolute -left-20 -top-20 w-40 h-40 rounded-full opacity-10 transition-all duration-1000 blur-[40px]"
+        className="absolute -left-20 -top-20 w-40 h-40 rounded-full bg-white opacity-[0.03] transition-all duration-1000 blur-[50px]"
         style={{
           transform: `translate3d(${ringRef.current.x}px, ${ringRef.current.y}px, 0)`,
-          background: 'conic-gradient(#00A3FF, #9D00FF, #FF00E5, #00A3FF)',
         }}
       />
     </div>
