@@ -1,5 +1,7 @@
 {
-  "name": "New Project",
-  "description": "A fresh start for a new digital experience.",
-  "requestFramePermissions": []
+  "name": "Momentum Marketing Solution LLC",
+  "description": "Engineering the future of digital dominance with high-performance creative technology.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
 }

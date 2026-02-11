@@ -11,6 +11,7 @@ import Contact from './components/sections/Contact.tsx';
 import WhatWeDo from './components/sections/WhatWeDo.tsx';
 import Industries from './components/sections/Industries.tsx';
 import Services from './components/sections/Services.tsx';
+import LiveStrategist from './components/sections/LiveStrategist.tsx';
 import MouseFollower from './components/MouseFollower.tsx';
 
 const App: React.FC = () => {
@@ -36,6 +37,8 @@ const App: React.FC = () => {
         return <Industries />;
       case ViewType.SERVICES:
         return <Services />;
+      case ViewType.LIVE_SYNC:
+        return <LiveStrategist />;
       default:
         return <Home setView={setView} />;
     }

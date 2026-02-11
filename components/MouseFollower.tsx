@@ -1,21 +1,27 @@
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const MouseFollower: React.FC = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-  const followerRef = useRef<HTMLDivElement>(null);
+  const [isClicked, setIsClicked] = useState(false);
   
+  // Real mouse coordinates
+  const mouseRef = useRef({ x: 0, y: 0 });
+  // Interpolated (smooth) coordinates for the ring
+  const ringRef = useRef({ x: 0, y: 0 });
+  
+  const dotElem = useRef<HTMLDivElement>(null);
+  const ringElem = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // Direct DOM manipulation for performance (avoiding React render cycles for 60fps movement)
-      if (followerRef.current) {
-        const x = e.clientX;
-        const y = e.clientY;
-        followerRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      }
-      setPosition({ x: e.clientX, y: e.clientY });
+      // Adjust mouse position for 90% zoom factor
+      mouseRef.current = { x: e.clientX / 0.9, y: e.clientY / 0.9 };
     };
+
+    const handleMouseDown = () => setIsClicked(true);
+    const handleMouseUp = () => setIsClicked(false);
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -23,7 +29,10 @@ const MouseFollower: React.FC = () => {
         target.tagName === 'BUTTON' || 
         target.tagName === 'A' || 
         target.closest('.group') ||
-        target.closest('select')
+        target.closest('select') ||
+        target.classList.contains('cursor-pointer') ||
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA'
       ) {
         setIsHovering(true);
       } else {
@@ -31,40 +40,93 @@ const MouseFollower: React.FC = () => {
       }
     };
 
+    const animate = () => {
+      // Lerp (Linear Interpolation) for the smooth ring follow
+      const lerpFactor = 0.12;
+      ringRef.current.x += (mouseRef.current.x - ringRef.current.x) * lerpFactor;
+      ringRef.current.y += (mouseRef.current.y - ringRef.current.y) * lerpFactor;
+
+      if (dotElem.current) {
+        dotElem.current.style.transform = `translate3d(${mouseRef.current.x}px, ${mouseRef.current.y}px, 0)`;
+      }
+
+      if (ringElem.current) {
+        ringElem.current.style.transform = `translate3d(${ringRef.current.x}px, ${ringRef.current.y}px, 0)`;
+      }
+
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('mouseover', handleMouseOver);
-    
+    rafRef.current = requestAnimationFrame(animate);
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
       window.removeEventListener('mouseover', handleMouseOver);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
   return (
-    <div 
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999] overflow-hidden"
-      style={{ mixBlendMode: 'screen' }}
-    >
-      {/* Primary Glow */}
+    <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
+      {/* Central Multi-color Point */}
       <div 
-        ref={followerRef}
-        className={`absolute -left-10 -top-10 w-20 h-20 rounded-full transition-all duration-300 ease-out will-change-transform ${
-          isHovering ? 'scale-[2.5] opacity-40' : 'scale-100 opacity-20'
+        ref={dotElem}
+        className={`absolute -left-1.5 -top-1.5 w-3 h-3 rounded-full z-30 transition-all duration-300 ease-out shadow-lg ${
+          isHovering ? 'scale-0 opacity-0' : 'opacity-100'
         }`}
         style={{
-          background: 'radial-gradient(circle, rgba(0, 163, 255, 0.8) 0%, rgba(157, 0, 255, 0.4) 50%, transparent 80%)',
-          filter: 'blur(15px)',
+          background: 'linear-gradient(45deg, #00A3FF, #9D00FF, #FF00E5)',
+          boxShadow: '0 0 10px rgba(157, 0, 255, 0.5)'
         }}
       />
-      
-      {/* Delayed Secondary Trail */}
+
+      {/* Kinetic Multi-color Outer Ring */}
       <div 
-        className="absolute -left-5 -top-5 w-10 h-10 rounded-full transition-all duration-700 ease-out opacity-10"
+        ref={ringElem}
+        className={`absolute -left-6 -top-6 w-12 h-12 rounded-full z-20 flex items-center justify-center transition-all duration-500 ease-out will-change-transform ${
+          isHovering ? 'scale-[2.2]' : 'scale-100'
+        } ${isClicked ? 'scale-[0.85]' : ''}`}
         style={{
-          transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-          background: 'radial-gradient(circle, rgba(255, 0, 229, 0.8) 0%, transparent 70%)',
-          filter: 'blur(20px)',
-          transitionDelay: '50ms'
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          // Conic gradient creates a spectrum around the circle border
+          borderImage: 'conic-gradient(#00A3FF, #9D00FF, #FF00E5, #00A3FF) 1',
+          mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          maskComposite: 'exclude',
+          WebkitMaskComposite: 'destination-out',
+          background: isHovering 
+            ? 'radial-gradient(circle, rgba(157, 0, 255, 0.1) 0%, transparent 70%)' 
+            : 'transparent'
+        }}
+      >
+        {/* Colorful Pulsing Inner Detail */}
+        <div 
+          className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${isHovering ? 'opacity-100 scale-125' : 'opacity-0 scale-50'}`} 
+          style={{ background: 'linear-gradient(to right, #00A3FF, #FF00E5)' }}
+        />
+        
+        {/* Hover label hint */}
+        {isHovering && (
+          <div className="absolute top-16 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] font-black tracking-[0.4em] uppercase italic animate-in fade-in slide-in-from-top-1">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00A3FF] to-[#FF00E5]">
+              DOMINATE_NODE
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Multi-color Atmospheric Glow (Ambient) */}
+      <div 
+        className="absolute -left-20 -top-20 w-40 h-40 rounded-full opacity-10 transition-all duration-1000 blur-[40px]"
+        style={{
+          transform: `translate3d(${ringRef.current.x}px, ${ringRef.current.y}px, 0)`,
+          background: 'conic-gradient(#00A3FF, #9D00FF, #FF00E5, #00A3FF)',
         }}
       />
     </div>

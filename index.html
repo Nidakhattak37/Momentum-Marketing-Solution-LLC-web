@@ -15,8 +15,11 @@
             background-color: #050505;
             color: #ffffff;
             margin: 0;
-            /* Changed from overflow: hidden to allow scrolling */
             overflow-x: hidden;
+            /* Global 90% zoom implementation */
+            zoom: 0.9;
+            -moz-transform: scale(0.9);
+            -moz-transform-origin: 0 0;
         }
 
         /* Custom high-end scrollbar */
@@ -63,6 +66,18 @@
         @keyframes shine {
             0% { background-position: -100% 0; }
             100% { background-position: 100% 0; }
+        }
+
+        /* Marquee Animation for Core Technologies - Right to Left */
+        @keyframes marquee-rtl {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee-rtl {
+            animation: marquee-rtl 35s linear infinite;
+        }
+        .animate-marquee-rtl:hover {
+            animation-play-state: paused;
         }
     </style>
     <script type="importmap">

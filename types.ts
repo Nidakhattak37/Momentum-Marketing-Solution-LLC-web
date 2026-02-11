@@ -10,6 +10,7 @@ export enum ViewType {
   VIDEO_LAB = 'video-lab',
   VOICE_LAB = 'voice-lab',
   ASSISTANT = 'assistant',
+  LIVE_SYNC = 'live-sync',
 }
 
 export interface GeneratedImage {
