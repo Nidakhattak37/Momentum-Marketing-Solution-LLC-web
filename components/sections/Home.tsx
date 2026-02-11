@@ -75,7 +75,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
   };
 
   return (
-    <div className="max-w-[1200px] mx-auto pb-40">
+    <div className="max-w-[1600px] mx-auto pb-40">
       {/* Cinematic Hero Section - 2 Column Layout */}
       <section className="min-h-[80vh] flex flex-col lg:grid lg:grid-cols-12 items-center justify-center relative py-20 lg:py-28 overflow-hidden gap-12">
         
@@ -253,7 +253,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
            {methodology.map((step) => (
              <div key={step.id} className="group p-8 lg:p-10 bg-zinc-900/10 border border-white/5 rounded-3xl lg:rounded-[2.5rem] hover:bg-white/5 hover:border-white/20 transition-all space-y-8 hover:-translate-y-2 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-10 transition-opacity" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex justify-between items-start">
                    <div className="w-10 h-10 bg-black border border-white/10 rounded-xl flex items-center justify-center text-lg font-black text-white group-hover:border-cyan-400 group-hover:text-cyan-400 transition-all">
                       {step.id}

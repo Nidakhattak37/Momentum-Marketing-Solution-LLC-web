@@ -93,7 +93,8 @@ const App: React.FC = () => {
                }} />
         </div>
         
-        <div className="relative z-10 px-6 md:px-16 lg:px-32 xl:px-48 2xl:px-80">
+        {/* Adjusted main padding for wider layout */}
+        <div className="relative z-10 px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
           {renderView()}
 
           {(currentView === ViewType.HOME || currentView === ViewType.WHAT_WE_DO || currentView === ViewType.INDUSTRIES || currentView === ViewType.SERVICES) && (
@@ -104,8 +105,9 @@ const App: React.FC = () => {
         </div>
       </main>
 
-      <footer className="bg-black py-24 border-t border-white/5 relative z-10 px-6 md:px-16 lg:px-32 xl:px-48 2xl:px-80">
-        <div className="max-w-[1600px] mx-auto">
+      {/* Adjusted footer padding for wider layout */}
+      <footer className="bg-black py-24 border-t border-white/5 relative z-10 px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="max-w-[1800px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
             <div className="lg:col-span-5 space-y-10">
               <div className="flex items-center gap-4">

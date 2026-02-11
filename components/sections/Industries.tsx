@@ -10,7 +10,7 @@ const Industries: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto p-6 py-20 animate-in fade-in duration-700">
+    <div className="max-w-[1600px] mx-auto p-6 py-20 animate-in fade-in duration-700">
       <div className="mb-20 text-center">
         <h1 className="text-6xl font-black uppercase tracking-tighter text-white mb-6">Sector Expertise</h1>
         <p className="text-zinc-500 text-xl max-w-2xl mx-auto font-light">Tailored AI solutions for the world's most demanding industries.</p>

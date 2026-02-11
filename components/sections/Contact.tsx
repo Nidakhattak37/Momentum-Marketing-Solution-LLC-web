@@ -23,7 +23,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div id="contact-section" className="max-w-[1400px] mx-auto py-24 lg:py-32 animate-in fade-in duration-1000">
+    <div id="contact-section" className="max-w-[1600px] mx-auto py-24 lg:py-32 animate-in fade-in duration-1000">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
         {/* Left Column: Vision & Meta-data */}
         <div className="lg:col-span-5 space-y-12 lg:sticky lg:top-40">
