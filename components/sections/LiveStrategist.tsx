@@ -16,24 +16,43 @@ const LiveStrategist: React.FC = () => {
   const nextStartTimeRef = useRef(0);
   const sourcesRef = useRef<Set<AudioBufferSourceNode>>(new Set());
 
-  // Base64 Helpers
+  // Manual implementation of encode and decode as required by guidelines
   const encode = (bytes: Uint8Array) => {
     let binary = '';
-    for (let i = 0; i < bytes.byteLength; i++) binary += String.fromCharCode(bytes[i]);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
     return btoa(binary);
   };
+
   const decode = (base64: string) => {
     const binaryString = atob(base64);
-    const bytes = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) bytes[i] = binaryString.charCodeAt(i);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
     return bytes;
   };
-  const decodeAudioData = async (data: Uint8Array, ctx: AudioContext) => {
+
+  // Recommended audio decoding logic for raw PCM data
+  const decodeAudioData = async (
+    data: Uint8Array,
+    ctx: AudioContext,
+    sampleRate: number,
+    numChannels: number,
+  ): Promise<AudioBuffer> => {
     const dataInt16 = new Int16Array(data.buffer);
-    const frameCount = dataInt16.length;
-    const buffer = ctx.createBuffer(1, frameCount, 24000);
-    const channelData = buffer.getChannelData(0);
-    for (let i = 0; i < frameCount; i++) channelData[i] = dataInt16[i] / 32768.0;
+    const frameCount = dataInt16.length / numChannels;
+    const buffer = ctx.createBuffer(numChannels, frameCount, sampleRate);
+
+    for (let channel = 0; channel < numChannels; channel++) {
+      const channelData = buffer.getChannelData(channel);
+      for (let i = 0; i < frameCount; i++) {
+        channelData[i] = dataInt16[i * numChannels + channel] / 32768.0;
+      }
+    }
     return buffer;
   };
 
@@ -64,31 +83,56 @@ const LiveStrategist: React.FC = () => {
 
               const int16 = new Int16Array(input.length);
               for (let i = 0; i < input.length; i++) int16[i] = input[i] * 32768;
+              
+              // Send audio data only after session promise resolves to avoid race conditions
               sessionPromise.then(s => s.sendRealtimeInput({ 
-                media: { data: encode(new Uint8Array(int16.buffer)), mimeType: 'audio/pcm;rate=16000' } 
+                media: { 
+                  data: encode(new Uint8Array(int16.buffer)), 
+                  mimeType: 'audio/pcm;rate=16000' 
+                } 
               }));
             };
             source.connect(processor);
             processor.connect(inputCtx.destination);
           },
           onmessage: async (msg: LiveServerMessage) => {
-            if (msg.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data) {
-              const data = decode(msg.serverContent.modelTurn.parts[0].inlineData.data);
-              const buffer = await decodeAudioData(data, outputCtx);
+            // Handle incoming audio stream parts
+            const audioDataString = msg.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
+            if (audioDataString) {
+              const data = decode(audioDataString);
+              const buffer = await decodeAudioData(data, outputCtx, 24000, 1);
               const source = outputCtx.createBufferSource();
               source.buffer = buffer;
               source.connect(outputCtx.destination);
+              
+              // Track end of queue for gapless playback
               nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outputCtx.currentTime);
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
+              
               sourcesRef.current.add(source);
+              source.onended = () => sourcesRef.current.delete(source);
             }
+
+            // Handle interruption signal to stop current playback
+            if (msg.serverContent?.interrupted) {
+              for (const source of sourcesRef.current) {
+                try { source.stop(); } catch(e) {}
+              }
+              sourcesRef.current.clear();
+              nextStartTimeRef.current = 0;
+            }
+
+            // Update transcription history
             if (msg.serverContent?.outputTranscription) {
-                setTranscription(prev => [...prev.slice(-4), msg.serverContent!.outputTranscription!.text]);
+              setTranscription(prev => [...prev.slice(-4), msg.serverContent!.outputTranscription!.text]);
             }
           },
           onclose: () => stopSession(),
-          onerror: (e) => console.error(e)
+          onerror: (e) => {
+            console.error('Live session error:', e);
+            stopSession();
+          }
         },
         config: {
           responseModalities: [Modality.AUDIO],
@@ -99,17 +143,21 @@ const LiveStrategist: React.FC = () => {
       });
       sessionRef.current = await sessionPromise;
     } catch (err) {
-      console.error(err);
+      console.error('Failed to start live session:', err);
       setIsConnecting(false);
     }
   };
 
   const stopSession = () => {
     setIsActive(false);
+    setIsConnecting(false);
     streamRef.current?.getTracks().forEach(t => t.stop());
     sessionRef.current?.close();
-    sourcesRef.current.forEach(s => s.stop());
+    for (const source of sourcesRef.current) {
+      try { source.stop(); } catch(e) {}
+    }
     sourcesRef.current.clear();
+    nextStartTimeRef.current = 0;
   };
 
   return (

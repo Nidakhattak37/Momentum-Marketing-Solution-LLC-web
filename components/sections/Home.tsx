@@ -76,16 +76,16 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
 
   return (
     <div className="max-w-[1600px] mx-auto pb-40">
-      {/* Cinematic Hero Section - Reduced top padding to bring content higher */}
+      {/* Cinematic Hero Section */}
       <section className="min-h-[80vh] flex flex-col lg:grid lg:grid-cols-12 items-center justify-center relative pt-4 pb-20 lg:pt-12 lg:pb-28 overflow-hidden gap-12">
         
         {/* Background Decorative Elements */}
         <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-600/[0.04] blur-[140px] rounded-full animate-pulse pointer-events-none" />
 
-        <div className="lg:col-span-7 space-y-10 relative z-10 text-left transition-all">
+        {/* 1st Column (Left): Text Content - Returned to Left Side */}
+        <div className="lg:col-span-7 space-y-10 relative z-10 text-left transition-all order-1">
           <div className="space-y-8 flex flex-col items-start">
             
-            {/* Boxed Bolt Icon and White Label with Hub Subtitle */}
             <div className="flex items-center gap-6 animate-in fade-in slide-in-from-left-4 duration-1000">
                <div className="p-3 border border-white/10 bg-white/[0.02] rounded-lg backdrop-blur-md group hover:border-cyan-500/50 transition-all duration-500 shadow-lg relative overflow-hidden">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundImage: brandGradient, opacity: 0.1 }} />
@@ -110,7 +110,6 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
               </span>
             </h1>
 
-            {/* Reduced text size here to text-xs / text-[13px] for a 'small' look */}
             <p className="text-xs lg:text-[13px] text-zinc-500 max-w-xl leading-relaxed font-medium animate-in fade-in slide-in-from-left-4 duration-1000 delay-500">
               Momentum Marketing Solution LLC is the premier digital agency for high-growth brands. We combine data-driven SEO, precision PPC, and elite web architecture to engineer your industry dominance.
             </p>
@@ -139,21 +138,21 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
           </div>
         </div>
 
-        {/* 2nd Section: Graph / Metric HUD - Dynamic Performance Style */}
-        <div className="lg:col-span-5 relative w-full group animate-in zoom-in duration-1000 delay-900">
+        {/* 2nd Column (Right): Graph / Metric HUD - Moved to Right but not "in the corner" */}
+        <div className="lg:col-span-5 relative w-full group animate-in zoom-in duration-1000 delay-900 order-2 flex justify-center lg:justify-end lg:pr-12 xl:pr-24">
           <div className="absolute -inset-4 opacity-20 rounded-[2rem] group-hover:opacity-40 transition-opacity duration-1000 blur-2xl" style={{ backgroundImage: brandGradient }} />
-          <div className="relative bg-black/40 border border-white/10 rounded-[2rem] p-6 lg:p-8 backdrop-blur-xl shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:border-white/20">
+          <div className="relative bg-black/40 border border-white/10 rounded-[2rem] p-5 lg:p-6 backdrop-blur-xl shadow-2xl transition-all duration-700 hover:scale-[1.01] hover:border-white/20 max-w-sm w-full">
             
             {/* Metric Toggle Controls */}
-            <div className="flex flex-wrap gap-2 mb-8 bg-black/40 p-1.5 rounded-2xl border border-white/5">
+            <div className="flex flex-wrap gap-1.5 mb-6 bg-black/40 p-1 rounded-2xl border border-white/5">
               {(Object.keys(metricConfig) as MetricType[]).map((m) => (
                 <button
                   key={m}
                   onClick={() => setActiveMetric(m)}
-                  className={`flex-1 px-4 py-2.5 rounded-xl text-[8px] font-black uppercase tracking-widest transition-all duration-300 border ${
+                  className={`flex-1 px-3 py-2 rounded-xl text-[7px] font-black uppercase tracking-widest transition-all duration-300 border ${
                     activeMetric === m 
                       ? 'bg-white text-black border-white shadow-lg' 
-                      : 'text-zinc-500 border-transparent hover:text-white hover:bg-white/5'
+                      : 'text-zinc-600 border-transparent hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {metricConfig[m].label}
@@ -161,32 +160,30 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
               ))}
             </div>
 
-            <div className="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
-              <div className="flex items-center gap-3">
+            <div className="flex justify-between items-center mb-5 border-b border-white/5 pb-3">
+              <div className="flex items-center gap-2">
                  <div 
-                   className="w-2 h-2 rounded-full transition-all duration-500" 
+                   className="w-1.5 h-1.5 rounded-full transition-all duration-500" 
                    style={{ backgroundColor: metricConfig[activeMetric].color, boxShadow: `0 0 10px ${metricConfig[activeMetric].color}` }} 
                  />
-                 <span className="text-[7px] font-mono text-zinc-400 tracking-widest uppercase">MOMENTUM_CORE_STREAM</span>
+                 <span className="text-[6px] font-mono text-zinc-500 tracking-widest uppercase">MOMENTUM_CORE</span>
               </div>
-              <div className="flex gap-4">
-                <span className="text-[6px] font-mono text-zinc-600 uppercase tracking-tighter">METRIC: {activeMetric.toUpperCase()}</span>
-                <span className="text-[6px] font-mono text-cyan-400 uppercase tracking-tighter">v2.5_STABLE</span>
+              <div className="flex gap-3">
+                <span className="text-[5px] font-mono text-zinc-600 uppercase tracking-tighter">METRIC: {activeMetric.toUpperCase()}</span>
+                <span className="text-[5px] font-mono text-cyan-500 uppercase tracking-tighter">v2.5</span>
               </div>
             </div>
             
-            <div className="h-44 w-full bg-black/60 border border-white/5 rounded-xl relative flex items-end justify-center px-4 py-4 gap-1.5 overflow-hidden group/graph">
-               {/* High-Tech Background Elements */}
-               <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+            {/* Taller height as preferred (h-44) */}
+            <div className="h-44 w-full bg-black/60 border border-white/5 rounded-xl relative flex items-end justify-center px-4 py-3 gap-1 overflow-hidden group/graph">
+               <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)', backgroundSize: '15px 15px' }} />
                
-               {/* Horizontal Scan Lines */}
-               <div className="absolute inset-0 flex flex-col justify-between py-2 opacity-10 pointer-events-none">
+               <div className="absolute inset-0 flex flex-col justify-between py-2 opacity-5 pointer-events-none">
                   {[...Array(5)].map((_, i) => (
                     <div key={i} className="h-[1px] w-full bg-white/20" />
                   ))}
                </div>
 
-               {/* Dynamic Wave Mask */}
                <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-cyan-400/5 to-transparent pointer-events-none" />
 
                {barData.map((val, i) => (
@@ -196,41 +193,41 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                   style={{ 
                     height: `${val}%`, 
                     background: `linear-gradient(to top, rgba(255,255,255,0.05), ${metricConfig[activeMetric].color}, ${metricConfig[activeMetric].secondary})`,
-                    transitionDelay: `${i * 20}ms`
+                    transitionDelay: `${i * 15}ms`
                   }}
                  >
-                    <div className="absolute -top-1 left-0 right-0 h-1 bg-white opacity-0 group-hover/bar:opacity-100 transition-opacity blur-[2px]" />
+                    <div className="absolute -top-0.5 left-0 right-0 h-0.5 bg-white opacity-0 group-hover/bar:opacity-100 transition-opacity blur-[1px]" />
                  </div>
                ))}
             </div>
             
-            <div className="grid grid-cols-2 gap-6 mt-8 pt-6 border-t border-white/5">
-              <div className="text-left space-y-1">
-                <div className="text-[6px] font-black text-zinc-500 uppercase tracking-widest mb-1">Impact Delta</div>
-                <div className="flex items-end gap-2">
-                   <div className="text-xl font-black text-white tracking-tighter animate-pulse">
+            <div className="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-white/5">
+              <div className="text-left space-y-0.5">
+                <div className="text-[5px] font-black text-zinc-600 uppercase tracking-widest mb-0.5">Impact Delta</div>
+                <div className="flex items-end gap-1.5">
+                   <div className="text-lg font-black text-white tracking-tighter animate-pulse">
                      {activeMetric === 'seo' ? '+412%' : activeMetric === 'ads' ? '+28.5x' : '+240%'}
                    </div>
-                   <div className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-b-[6px] border-b-emerald-500 mb-1.5" />
+                   <div className="w-0 h-0 border-l-[3px] border-l-transparent border-r-[3px] border-r-transparent border-b-[5px] border-b-emerald-500 mb-1" />
                 </div>
               </div>
-              <div className="text-right space-y-1">
-                <div className="text-[6px] font-black text-zinc-500 uppercase tracking-widest mb-1">Process Latency</div>
-                <div className="text-xl font-black text-white tracking-tighter">
+              <div className="text-right space-y-0.5">
+                <div className="text-[5px] font-black text-zinc-600 uppercase tracking-widest mb-0.5">Process Latency</div>
+                <div className="text-lg font-black text-white tracking-tighter">
                   {activeMetric === 'ads' ? '0.04ms' : '0.1ms'}
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 space-y-2">
+            <div className="mt-4 space-y-1.5">
                <div className="flex justify-between items-center text-[5px] font-mono text-zinc-700 uppercase">
                   <span>Resource Allocation</span>
                   <span>Opt_Balanced</span>
                </div>
-               <div className="flex gap-1.5">
+               <div className="flex gap-1">
                   {Array.from({length: 6}).map((_, i) => (
-                    <div key={i} className="flex-1 h-1 bg-white/5 rounded-full overflow-hidden">
-                        <div className="h-full animate-loading-bar" style={{ backgroundImage: brandGradient, width: `${30 + Math.random() * 50}%`, animationDelay: `${i * 0.15}s` }} />
+                    <div key={i} className="flex-1 h-0.5 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full animate-loading-bar" style={{ backgroundImage: brandGradient, width: `${30 + Math.random() * 50}%`, animationDelay: `${i * 0.1}s` }} />
                     </div>
                   ))}
                </div>
