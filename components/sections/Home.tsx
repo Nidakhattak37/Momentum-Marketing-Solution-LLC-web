@@ -76,8 +76,8 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
 
   return (
     <div className="max-w-[1600px] mx-auto pb-40">
-      {/* Cinematic Hero Section - 2 Column Layout */}
-      <section className="min-h-[80vh] flex flex-col lg:grid lg:grid-cols-12 items-center justify-center relative py-20 lg:py-28 overflow-hidden gap-12">
+      {/* Cinematic Hero Section - Reduced top padding to bring content higher */}
+      <section className="min-h-[80vh] flex flex-col lg:grid lg:grid-cols-12 items-center justify-center relative pt-4 pb-20 lg:pt-12 lg:pb-28 overflow-hidden gap-12">
         
         {/* Background Decorative Elements */}
         <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-600/[0.04] blur-[140px] rounded-full animate-pulse pointer-events-none" />
@@ -110,7 +110,8 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
               </span>
             </h1>
 
-            <p className="text-sm lg:text-base text-zinc-500 max-w-xl leading-relaxed font-medium animate-in fade-in slide-in-from-left-4 duration-1000 delay-500">
+            {/* Reduced text size here to text-xs / text-[13px] for a 'small' look */}
+            <p className="text-xs lg:text-[13px] text-zinc-500 max-w-xl leading-relaxed font-medium animate-in fade-in slide-in-from-left-4 duration-1000 delay-500">
               Momentum Marketing Solution LLC is the premier digital agency for high-growth brands. We combine data-driven SEO, precision PPC, and elite web architecture to engineer your industry dominance.
             </p>
           </div>
