@@ -2,134 +2,212 @@
 import React, { useState } from 'react';
 
 const Contact: React.FC = () => {
-  const [formState, setFormState] = useState({ name: '', email: '', org: '', service: '', message: '' });
+  const [formState, setFormState] = useState({ 
+    name: '', 
+    email: '', 
+    org: '', 
+    service: 'seo', 
+    message: '',
+    budget: '50k-100k'
+  });
   const [submitted, setSubmitted] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
-    setFormState({ name: '', email: '', org: '', service: '', message: '' });
+    setTimeout(() => setSubmitted(false), 6000);
+    setFormState({ name: '', email: '', org: '', service: 'seo', message: '', budget: '50k-100k' });
   };
 
   return (
-    <div className="max-w-[1600px] mx-auto px-8 py-32 animate-in fade-in duration-700">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-        <div className="space-y-12 sticky top-40">
-          <div>
-            <h5 className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] mb-6">CONTACT</h5>
-            <h1 className="text-7xl lg:text-[100px] font-black leading-none tracking-tighter uppercase italic flex flex-col">
+    <div id="contact-section" className="max-w-[1600px] mx-auto px-8 py-32 animate-in fade-in duration-1000">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        {/* Left Column: Vision & Meta-data */}
+        <div className="lg:col-span-5 space-y-12 lg:sticky lg:top-40">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 bg-[#FF00E5]/10 border border-[#FF00E5]/20 px-4 py-1.5 rounded-full mb-4">
+              <div className="w-1.5 h-1.5 bg-[#FF00E5] rounded-full animate-pulse" />
+              <span className="text-[9px] font-black text-[#FF00E5] tracking-[0.3em] uppercase">Deployment Protocol</span>
+            </div>
+            <h1 className="text-7xl xl:text-[90px] font-black leading-none tracking-tighter uppercase italic flex flex-col">
               <span className="text-white">IGNITE YOUR</span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00A3FF] to-[#FF00E5]">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00A3FF] via-[#9D00FF] to-[#FF00E5]">
                 MOMENTUM.
               </span>
             </h1>
-            <p className="text-zinc-500 text-xl font-medium max-w-lg mt-10">
-              Ready to scale? Drop us a brief and we'll sync within 24 hours.
+            <p className="text-zinc-500 text-xl font-medium max-w-lg leading-relaxed">
+              Ready to redefine your market position? Initiate a briefing and our lead strategists will align with your objectives within 24 hours.
             </p>
           </div>
 
-          <div className="space-y-10">
-            <div className="flex items-center gap-6 group cursor-pointer">
-              <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-pink-500 group-hover:scale-110 group-hover:border-pink-500/50 transition-all">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              </div>
-              <div>
-                <h4 className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">EMAIL</h4>
-                <p className="text-2xl font-black text-white italic tracking-tighter hover:text-pink-500 transition-colors">info@mymomentumsolutions.com</p>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="p-6 bg-white/5 border border-white/5 rounded-3xl hover:border-white/20 transition-all group">
+              <h4 className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-4">Direct Sync</h4>
+              <p className="text-lg font-black text-white italic tracking-tighter group-hover:text-blue-400 transition-colors cursor-pointer">info@mymomentumsolutions.com</p>
             </div>
+            <div className="p-6 bg-white/5 border border-white/5 rounded-3xl hover:border-white/20 transition-all group">
+              <h4 className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-4">Secure Audio</h4>
+              <p className="text-lg font-black text-white italic tracking-tighter group-hover:text-pink-500 transition-colors cursor-pointer">+1 (888) MOMENTUM</p>
+            </div>
+          </div>
 
-            <div className="flex items-center gap-6 group cursor-pointer">
-              <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-blue-400 group-hover:scale-110 group-hover:border-blue-500/50 transition-all">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-              </div>
-              <div>
-                <h4 className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">CALL</h4>
-                <p className="text-2xl font-black text-white italic tracking-tighter hover:text-blue-500 transition-colors">+1 (555) 123-4567</p>
-              </div>
+          <div className="pt-8 border-t border-white/5 flex items-center gap-10">
+            <div className="flex flex-col">
+              <span className="text-[9px] font-black text-zinc-700 uppercase tracking-widest">Global Status</span>
+              <span className="text-xs font-bold text-emerald-500">OPERATIONAL</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[9px] font-black text-zinc-700 uppercase tracking-widest">Timezone</span>
+              <span className="text-xs font-bold text-zinc-400">EST / UTC-5</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[9px] font-black text-zinc-700 uppercase tracking-widest">Latency</span>
+              <span className="text-xs font-bold text-zinc-400">&lt; 12HR REQ</span>
             </div>
           </div>
         </div>
 
-        <div className="bg-[#0a0a0a] border border-white/5 rounded-[4rem] p-16 shadow-2xl relative overflow-hidden group">
-           <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/5 blur-[100px] group-hover:opacity-100 opacity-0 transition-opacity" />
-           <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 blur-[100px] group-hover:opacity-100 opacity-0 transition-opacity" />
-           
+        {/* Right Column: High-Performance Form */}
+        <div className="lg:col-span-7 bg-[#0a0a0a] border border-white/10 rounded-[3rem] p-8 md:p-16 shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#00A3FF]/5 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#FF00E5]/5 blur-[120px] rounded-full pointer-events-none" />
+          
           {submitted ? (
-            <div className="h-[600px] flex flex-col items-center justify-center text-center animate-in zoom-in duration-500">
-              <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-pink-500 rounded-full flex items-center justify-center text-white mb-10 shadow-lg shadow-blue-500/20">
-                <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+            <div className="min-h-[600px] flex flex-col items-center justify-center text-center animate-in zoom-in duration-500">
+              <div className="relative mb-12">
+                <div className="absolute inset-0 bg-blue-500 blur-3xl opacity-20 animate-pulse" />
+                <div className="relative w-24 h-24 bg-gradient-to-tr from-[#00A3FF] to-[#FF00E5] rounded-full flex items-center justify-center text-white shadow-2xl">
+                  <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                </div>
               </div>
-              <h3 className="text-4xl font-black text-white italic tracking-tighter uppercase mb-4">DEPLOYMENT SYNCED.</h3>
-              <p className="text-zinc-500 font-medium">Strategist alignment initiated. Stand by for contact.</p>
+              <h3 className="text-5xl font-black text-white italic tracking-tighter uppercase mb-6">Deployment Synced.</h3>
+              <p className="text-zinc-500 font-medium max-w-sm mx-auto text-lg leading-relaxed">
+                Strategy protocol initiated. A Momentum representative is reviewing your objectives.
+              </p>
+              <button 
+                onClick={() => setSubmitted(false)}
+                className="mt-12 text-[10px] font-black text-zinc-600 hover:text-white uppercase tracking-[0.4em] transition-all"
+              >
+                Reset Connection
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-12 relative z-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="space-y-4">
-                  <label className="text-[9px] font-black text-zinc-500 uppercase tracking-widest ml-1">FULL NAME</label>
+                  <div className="flex justify-between items-center">
+                    <label className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Partner Name</label>
+                    <span className="text-[8px] font-mono text-zinc-800 uppercase">REQ_FLD_01</span>
+                  </div>
                   <input 
                     required type="text" value={formState.name}
                     onChange={e => setFormState({...formState, name: e.target.value})}
-                    placeholder="YOUR NAME"
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-800 focus:border-blue-500 outline-none transition-all"
+                    placeholder="ENTER NAME"
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all"
                   />
                 </div>
                 <div className="space-y-4">
-                  <label className="text-[9px] font-black text-zinc-500 uppercase tracking-widest ml-1">EMAIL</label>
+                  <div className="flex justify-between items-center">
+                    <label className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Contact Node</label>
+                    <span className="text-[8px] font-mono text-zinc-800 uppercase">REQ_FLD_02</span>
+                  </div>
                   <input 
                     required type="email" value={formState.email}
                     onChange={e => setFormState({...formState, email: e.target.value})}
-                    placeholder="NAME@COMPANY.COM"
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-800 focus:border-blue-500 outline-none transition-all"
+                    placeholder="EMAIL@DOMAIN.COM"
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all"
                   />
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="space-y-4">
-                  <label className="text-[9px] font-black text-zinc-500 uppercase tracking-widest ml-1">ORGANIZATION</label>
+                  <div className="flex justify-between items-center">
+                    <label className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Organization</label>
+                    <span className="text-[8px] font-mono text-zinc-800 uppercase">OPT_FLD_03</span>
+                  </div>
                   <input 
                     type="text" value={formState.org}
                     onChange={e => setFormState({...formState, org: e.target.value})}
                     placeholder="COMPANY NAME"
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-800 focus:border-blue-500 outline-none transition-all"
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all"
                   />
                 </div>
                 <div className="space-y-4">
-                  <label className="text-[9px] font-black text-zinc-500 uppercase tracking-widest ml-1">SERVICES</label>
+                  <div className="flex justify-between items-center">
+                    <label className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Project Scale</label>
+                    <span className="text-[8px] font-mono text-zinc-800 uppercase">CFG_FLD_04</span>
+                  </div>
                   <select 
-                    value={formState.service}
-                    onChange={e => setFormState({...formState, service: e.target.value})}
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic focus:border-blue-500 outline-none transition-all appearance-none"
+                    value={formState.budget}
+                    onChange={e => setFormState({...formState, budget: e.target.value})}
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic focus:border-blue-500 outline-none transition-all appearance-none cursor-pointer"
                   >
-                    <option value="" className="bg-black">INTERESTED SERVICE...</option>
-                    <option value="seo" className="bg-black">SEO STRATEGY</option>
-                    <option value="ppc" className="bg-black">PAID SEARCH (PPC)</option>
-                    <option value="web" className="bg-black">WEB EXPERIENCES</option>
-                    <option value="full" className="bg-black">FULL ARCHITECTURE</option>
+                    <option value="10k-50k" className="bg-black">10K - 50K USD</option>
+                    <option value="50k-100k" className="bg-black">50K - 100K USD</option>
+                    <option value="100k-500k" className="bg-black">100K - 500K USD</option>
+                    <option value="500k+" className="bg-black">500K+ USD / ENTERPRISE</option>
                   </select>
                 </div>
               </div>
 
               <div className="space-y-4">
-                <label className="text-[9px] font-black text-zinc-500 uppercase tracking-widest ml-1">MESSAGE</label>
+                <div className="flex justify-between items-center">
+                  <label className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Operational Focus</label>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {['seo', 'ppc', 'web', 'full'].map((svc) => (
+                    <button
+                      key={svc}
+                      type="button"
+                      onClick={() => setFormState({...formState, service: svc})}
+                      className={`px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
+                        formState.service === svc 
+                        ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20' 
+                        : 'bg-white/5 border border-white/10 text-zinc-600 hover:text-white hover:border-white/20'
+                      }`}
+                    >
+                      {svc === 'full' ? 'FULL ARCHITECTURE' : svc.toUpperCase() + ' STRATEGY'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <label className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Objectives</label>
+                  <span className="text-[8px] font-mono text-zinc-800 uppercase">DAT_FLD_05</span>
+                </div>
                 <textarea 
                   required rows={3} value={formState.message}
                   onChange={e => setFormState({...formState, message: e.target.value})}
-                  placeholder="OBJECTIVES AND PROJECT DETAILS..."
-                  className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-800 focus:border-blue-500 outline-none transition-all resize-none"
+                  placeholder="DESCRIBE YOUR CURRENT PERFORMANCE FRICTION POINTS..."
+                  className="w-full bg-transparent border-b border-white/10 py-4 text-xl font-black text-white italic placeholder:text-zinc-900 focus:border-blue-500 outline-none transition-all resize-none"
                 />
               </div>
 
               <button 
                 type="submit"
-                className="group w-full py-8 bg-white text-black font-black uppercase tracking-[0.3em] rounded-3xl hover:bg-gradient-to-r hover:from-blue-500 hover:to-pink-500 hover:text-white transition-all shadow-xl active:scale-[0.98] flex items-center justify-center gap-4"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="group relative w-full py-10 overflow-hidden rounded-3xl transition-all active:scale-[0.98]"
               >
-                SEND MESSAGE
-                <svg className="w-6 h-6 transform group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                <div className={`absolute inset-0 bg-white transition-all duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'}`} />
+                <div className={`absolute inset-0 bg-gradient-to-r from-[#00A3FF] via-[#9D00FF] to-[#FF00E5] transition-all duration-500 ${isHovered ? 'opacity-100 scale-105' : 'opacity-0'}`} />
+                
+                <span className={`relative flex items-center justify-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] transition-colors duration-500 ${isHovered ? 'text-white' : 'text-black'}`}>
+                  INITIALIZE DEPLOYMENT
+                  <svg className={`w-6 h-6 transform transition-all duration-500 ${isHovered ? 'translate-x-3 opacity-100' : 'translate-x-0 opacity-0'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
               </button>
+              
+              <div className="flex justify-between items-center pt-4 opacity-30">
+                <span className="text-[8px] font-mono uppercase tracking-widest text-zinc-500">MOMENTUM_OS_V2.1.0</span>
+                <span className="text-[8px] font-mono uppercase tracking-widest text-zinc-500">ENCRYPTED_DATA_TRANSIT</span>
+              </div>
             </form>
           )}
         </div>

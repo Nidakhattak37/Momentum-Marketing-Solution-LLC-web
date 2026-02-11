@@ -7,6 +7,15 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ setView }) => {
+  const scrollToContact = () => {
+    const section = document.getElementById('contact-section');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setView(ViewType.CONTACT);
+    }
+  };
+
   const ecosystems = [
     { name: 'Amazon AWS', icon: '☁️' },
     { name: 'WordPress', icon: '📝' },
@@ -79,9 +88,9 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
-             <button onClick={() => setView(ViewType.CONTACT)} className="px-10 py-5 bg-white text-black rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)]">PARTNER NOW</button>
-             <button onClick={() => setView(ViewType.CONTACT)} className="px-10 py-5 bg-white/5 border border-white/10 text-white rounded-full font-black uppercase tracking-widest hover:bg-white/10 transition-all">REQUEST DEMO</button>
-             <button className="flex items-center gap-2 px-6 py-5 text-[11px] font-black uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">
+             <button onClick={scrollToContact} className="px-10 py-5 bg-white text-black rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)]">PARTNER NOW</button>
+             <button onClick={scrollToContact} className="px-10 py-5 bg-white/5 border border-white/10 text-white rounded-full font-black uppercase tracking-widest hover:bg-white/10 transition-all">REQUEST DEMO</button>
+             <button onClick={() => setView(ViewType.CONTACT)} className="flex items-center gap-2 px-6 py-5 text-[11px] font-black uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                 CALL NOW
              </button>
@@ -178,7 +187,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
         <div className="mt-20 text-center">
            <div className="inline-flex flex-col items-center gap-4">
               <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">READY FOR DEPLOYMENT?</span>
-              <button onClick={() => setView(ViewType.CONTACT)} className="px-12 py-5 bg-gradient-to-r from-[#00A3FF] to-[#9D00FF] text-white rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_40px_rgba(0,163,255,0.2)]">REQUEST SPECS</button>
+              <button onClick={scrollToContact} className="px-12 py-5 bg-gradient-to-r from-[#00A3FF] to-[#9D00FF] text-white rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_40px_rgba(0,163,255,0.2)]">REQUEST SPECS</button>
               <span className="text-[9px] font-mono text-zinc-800">STANDARD SYNC: 7-12 DAYS</span>
            </div>
         </div>

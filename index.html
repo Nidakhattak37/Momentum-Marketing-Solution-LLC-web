@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Project</title>
+    <title>Momentum Marketing Solution LLC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +15,25 @@
             background-color: #050505;
             color: #ffffff;
             margin: 0;
-            overflow: hidden;
+            /* Changed from overflow: hidden to allow scrolling */
+            overflow-x: hidden;
         }
+
+        /* Custom high-end scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a1a1a;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #222;
+        }
+
         .orb {
             position: absolute;
             width: 600px;
@@ -29,6 +46,23 @@
         @keyframes move {
             from { transform: translate(-10%, -10%); }
             to { transform: translate(10%, 10%); }
+        }
+        
+        .metallic-shine {
+            background: linear-gradient(
+                110deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0) 45%,
+                rgba(255, 255, 255, 0.05) 50%,
+                rgba(255, 255, 255, 0) 55%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            background-size: 200% 100%;
+            animation: shine 8s linear infinite;
+        }
+        @keyframes shine {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
         }
     </style>
     <script type="importmap">
