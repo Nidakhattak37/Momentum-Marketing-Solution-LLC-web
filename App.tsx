@@ -17,6 +17,8 @@ import MouseFollower from './components/MouseFollower.tsx';
 const App: React.FC = () => {
   const [currentView, setView] = useState<ViewType>(ViewType.HOME);
 
+  const brandGradient = 'linear-gradient(to right, #00E5FF, #9D00FF, #FF00C7)';
+
   const renderView = () => {
     switch (currentView) {
       case ViewType.HOME:
@@ -83,7 +85,7 @@ const App: React.FC = () => {
       <main className="flex-1 relative">
         <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
           <div className="absolute inset-0 bg-[#000000]" />
-          <div className="absolute top-[0%] left-[-10%] w-[70%] h-[70%] bg-blue-500/[0.03] blur-[200px] rounded-full animate-pulse" style={{ animationDuration: '15s' }} />
+          <div className="absolute top-[0%] left-[-10%] w-[70%] h-[70%] bg-cyan-500/[0.03] blur-[200px] rounded-full animate-pulse" style={{ animationDuration: '15s' }} />
           <div className="absolute inset-0 opacity-[0.05] animate-grid-flow" 
                style={{
                  backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
@@ -91,7 +93,7 @@ const App: React.FC = () => {
                }} />
         </div>
         
-        <div className="relative z-10">
+        <div className="relative z-10 px-6 md:px-16 lg:px-32 xl:px-48 2xl:px-80">
           {renderView()}
 
           {(currentView === ViewType.HOME || currentView === ViewType.WHAT_WE_DO || currentView === ViewType.INDUSTRIES || currentView === ViewType.SERVICES) && (
@@ -102,12 +104,15 @@ const App: React.FC = () => {
         </div>
       </main>
 
-      <footer className="bg-black py-24 border-t border-white/5 relative z-10">
-        <div className="max-w-[1600px] mx-auto px-10">
+      <footer className="bg-black py-24 border-t border-white/5 relative z-10 px-6 md:px-16 lg:px-32 xl:px-48 2xl:px-80">
+        <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
             <div className="lg:col-span-5 space-y-10">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#00A3FF] via-[#9D00FF] to-[#FF00E5] text-white rounded-lg flex items-center justify-center font-black shadow-lg">M</div>
+                <div 
+                  className="w-10 h-10 text-white rounded-lg flex items-center justify-center font-black shadow-lg"
+                  style={{ background: brandGradient }}
+                >M</div>
                 <span className="text-2xl font-black uppercase tracking-tighter">MOMENTUM.</span>
               </div>
               <p className="text-zinc-500 max-w-sm text-lg font-medium leading-relaxed">
@@ -115,7 +120,7 @@ const App: React.FC = () => {
               </p>
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] font-black text-zinc-700 uppercase tracking-widest">Connect Node</span>
-                <a href="mailto:info@mymomentumsolutions.com" className="text-xl font-bold text-white hover:text-blue-500 transition-colors underline underline-offset-8 decoration-white/10">info@mymomentumsolutions.com</a>
+                <a href="mailto:info@mymomentumsolutions.com" className="text-xl font-bold text-white hover:text-cyan-400 transition-colors underline underline-offset-8 decoration-white/10">info@mymomentumsolutions.com</a>
               </div>
             </div>
 

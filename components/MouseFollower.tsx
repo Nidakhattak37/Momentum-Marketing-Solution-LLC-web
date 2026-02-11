@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 const MouseFollower: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   
   const mouseRef = useRef({ x: 0, y: 0 });
   const ringRef = useRef({ x: 0, y: 0 });
@@ -13,8 +14,13 @@ const MouseFollower: React.FC = () => {
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
+    // Check if device is touch enabled
+    const touchCheck = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(touchCheck);
+    if (touchCheck) return;
+
     const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX / 0.9, y: e.clientY / 0.9 };
+      mouseRef.current = { x: e.clientX, y: e.clientY };
     };
 
     const handleMouseDown = () => setIsClicked(true);
@@ -67,6 +73,8 @@ const MouseFollower: React.FC = () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
+
+  if (isTouchDevice) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">

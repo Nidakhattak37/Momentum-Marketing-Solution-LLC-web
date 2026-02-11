@@ -7,6 +7,8 @@ const LiveStrategist: React.FC = () => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [transcription, setTranscription] = useState<string[]>([]);
   const [volume, setVolume] = useState(0);
+
+  const brandGradient = 'linear-gradient(to right, #00E5FF, #9D00FF, #FF00C7)';
   
   const audioContextRef = useRef<AudioContext | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -113,12 +115,12 @@ const LiveStrategist: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto py-20 px-8 text-center space-y-12 animate-in fade-in duration-1000">
       <div className="space-y-4">
-        <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-1 rounded-full">
+        <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 px-4 py-1 rounded-full">
            <div className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-emerald-500 animate-pulse' : 'bg-zinc-600'}`} />
-           <span className="text-[9px] font-black text-blue-400 tracking-widest uppercase">Neural Audio Sync</span>
+           <span className="text-[9px] font-black text-cyan-400 tracking-widest uppercase">Neural Audio Sync</span>
         </div>
         <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter uppercase leading-none">
-          THE MOMENTUM <br /> <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00A3FF] to-[#FF00E5]">ORACLE.</span>
+          THE MOMENTUM <br /> <span className="bg-clip-text text-transparent" style={{ backgroundImage: brandGradient }}>ORACLE.</span>
         </h1>
         <p className="text-zinc-500 max-w-lg mx-auto font-semibold">
           Initialize a zero-latency audio briefing with our lead AI strategist. Real-time market diagnostics and creative alignment.
@@ -144,7 +146,7 @@ const LiveStrategist: React.FC = () => {
             disabled={isConnecting}
             className={`relative z-10 w-48 h-48 rounded-full flex flex-col items-center justify-center transition-all duration-500 border-4 ${
                 isActive 
-                ? 'bg-red-500/10 border-red-500 shadow-[0_0_50px_rgba(239,68,68,0.3)]' 
+                ? 'bg-cyan-500/10 border-cyan-500 shadow-[0_0_50px_rgba(0,229,255,0.3)]' 
                 : 'bg-white border-transparent text-black hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.1)]'
             }`}
          >
@@ -152,7 +154,7 @@ const LiveStrategist: React.FC = () => {
                 <div className="w-8 h-8 border-4 border-black/20 border-t-black rounded-full animate-spin" />
             ) : isActive ? (
                 <>
-                    <div className="w-6 h-6 bg-red-500 rounded-sm mb-2" />
+                    <div className="w-6 h-6 bg-cyan-400 rounded-sm mb-2" />
                     <span className="text-[10px] font-black tracking-widest">END BRIEFING</span>
                 </>
             ) : (
