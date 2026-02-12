@@ -39,14 +39,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
       label: 'SERVICES', 
       id: 'srv',
       sub: [
-        { label: 'Search Engine Optimization (SEO)', id: ViewType.SERVICES },
-        { label: 'Social Media Management', id: ViewType.SERVICES },
+        { label: 'SEO', id: ViewType.SERVICES },
+        { label: 'Social Media', id: ViewType.SERVICES },
         { label: 'Content Marketing', id: ViewType.SERVICES },
-        { label: 'Web Design & Development', id: ViewType.SERVICES },
-        { label: 'Mobile App Development', id: ViewType.SERVICES },
-        { label: 'Branding & Identity', id: ViewType.SERVICES },
-        { label: 'Data & Analytics', id: ViewType.SERVICES },
-        { label: 'pay-per-click(PPC)', id: ViewType.SERVICES },
+        { label: 'Web Development', id: ViewType.SERVICES },
+        { label: 'Mobile Apps', id: ViewType.SERVICES },
+        { label: 'Branding', id: ViewType.SERVICES },
+        { label: 'Analytics', id: ViewType.SERVICES },
+        { label: 'PPC', id: ViewType.SERVICES },
       ]
     },
     { 
@@ -62,40 +62,37 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
     { label: 'CONTACT', id: ViewType.CONTACT },
   ];
 
-  const handleLinkClick = (id: string, isSub: boolean = false) => {
-    if (!isSub) {
-      setView(id as ViewType);
-      setIsMobileMenuOpen(false);
-    }
+  const handleLinkClick = (id: string) => {
+    setView(id as ViewType);
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
   };
 
   return (
-    <nav className="sticky top-0 z-[100] bg-black/80 backdrop-blur-3xl border-b border-white/5 px-6 lg:px-10 py-4 lg:py-5">
-      <div className="max-w-[1800px] mx-auto flex items-center justify-between">
+    <nav className={`sticky top-0 z-[100] border-b border-white/5 px-6 lg:px-10 py-4 lg:py-5 transition-colors duration-300 ${isMobileMenuOpen ? 'bg-black' : 'bg-black/90 backdrop-blur-2xl'}`}>
+      <div className="max-w-[1800px] mx-auto flex items-center justify-between relative">
         
         {/* Logo Section */}
         <div 
-          className="flex items-center gap-4 cursor-pointer group z-[110]"
-          onClick={() => { setView(ViewType.HOME); setIsMobileMenuOpen(false); }}
+          className="flex items-center gap-3 cursor-pointer group relative z-[210]"
+          onClick={() => handleLinkClick(ViewType.HOME)}
         >
           <div className="relative">
             <div 
-              className="w-8 h-8 lg:w-9 lg:h-9 text-white rounded-[4px] flex items-center justify-center shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.5)]"
+              className="w-7 h-7 lg:w-8 lg:h-8 text-white rounded-[3px] flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all group-hover:scale-105"
               style={{ background: brandGradient }}
             >
-              <span className="font-black text-base lg:text-lg tracking-tighter">M</span>
+              <span className="font-black text-xs lg:text-sm tracking-tighter">M</span>
             </div>
-            <div className="absolute -top-1 -left-1 w-1.5 h-1.5 border-t border-l border-white/30" />
-            <div className="absolute -bottom-1 -right-1 w-1.5 h-1.5 border-b border-r border-white/30" />
           </div>
-          <span className="text-lg lg:text-xl font-black tracking-[-0.07em] text-white uppercase leading-none">
+          <span className="text-sm lg:text-base font-black tracking-[-0.05em] text-white uppercase leading-none">
             MOMENTUM.
           </span>
         </div>
         
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center">
-          <div className="flex gap-10 xl:gap-14 items-center">
+          <div className="flex gap-8 items-center">
             {menuItems.map((item) => (
               <div 
                 key={item.id} 
@@ -105,128 +102,104 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
               >
                 <button 
                   onClick={() => !item.sub && handleLinkClick(item.id)}
-                  className={`group/btn flex items-center gap-2 text-[9px] font-black tracking-[0.2em] transition-all duration-300 uppercase ${
+                  className={`flex items-center gap-1.5 text-[9px] font-black tracking-[0.2em] transition-all duration-300 uppercase ${
                     currentView === item.id || activeDropdown === item.id ? 'text-white' : 'text-zinc-500 hover:text-white'
                   }`}
                 >
                   {item.label}
                   {item.sub && (
-                    <svg 
-                      className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.id ? 'rotate-180 text-cyan-400' : 'text-zinc-600'}`} 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                    >
+                    <svg className={`w-2.5 h-2.5 transition-transform duration-300 ${activeDropdown === item.id ? 'rotate-180 text-cyan-400' : 'text-zinc-600'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
                 </button>
                 
                 {item.sub && activeDropdown === item.id && (
-                  <div className={`absolute top-full pt-6 ${item.id === 'srv' ? 'w-[36rem] -left-[14rem]' : 'w-72 left-0'} animate-in fade-in slide-in-from-top-4 duration-200 ease-out`}>
-                    <div className="relative bg-[#0a0a0a] border border-white/10 rounded-xl shadow-[0_40px_80px_rgba(0,0,0,0.8)] overflow-hidden">
-                      <div className="h-[2px] w-full flex">
-                        <div className="flex-1 h-full bg-[#00E5FF]" />
-                        <div className="flex-1 h-full bg-[#9D00FF]" />
-                        <div className="flex-1 h-full bg-[#FF00C7]" />
-                      </div>
-                      <div className={`p-1 ${item.id === 'srv' ? 'grid grid-cols-2 gap-x-1' : 'space-y-0.5'}`}>
-                        {item.sub.map((sub, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => {
-                              setView(sub.id);
-                              setActiveDropdown(null);
-                            }}
-                            className="w-full text-left relative px-4 py-3 hover:bg-white/[0.04] rounded-lg transition-all group/sub flex items-center gap-3 overflow-hidden"
-                          >
-                            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-cyan-400 translate-x-[-3px] group-hover/sub:translate-x-0 transition-transform duration-300 shadow-[2px_0_10px_rgba(0,229,255,0.5)]" />
-                            <div className="relative flex items-center justify-center shrink-0 ml-1">
-                               <div className="w-1.5 h-1.5 bg-zinc-800 group-hover/sub:bg-cyan-400 rounded-full transition-all duration-300 shadow-[0_0_0px_transparent] group-hover/sub:shadow-[0_0_12px_rgba(0,229,255,0.8)]" />
-                            </div>
-                            <div className="flex-1">
-                              <span className="text-[9px] font-bold text-zinc-500 group-hover/sub:text-white uppercase tracking-[0.1em] transition-colors">
-                                {sub.label}
-                              </span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
+                  <div className="absolute top-full pt-4 left-0 w-64 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="bg-[#0a0a0a] border border-white/10 rounded-lg shadow-2xl overflow-hidden p-1">
+                      {item.sub.map((sub, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handleLinkClick(sub.id)}
+                          className="w-full text-left px-4 py-2.5 hover:bg-white/[0.03] rounded flex items-center gap-3 group/sub"
+                        >
+                          <div className="w-1 h-1 bg-zinc-800 group-hover/sub:bg-cyan-400 rounded-full transition-colors" />
+                          <span className="text-[9px] font-bold text-zinc-500 group-hover/sub:text-white uppercase tracking-widest">{sub.label}</span>
+                        </button>
+                      ))}
                     </div>
                   </div>
                 )}
               </div>
             ))}
           </div>
-          <div className="h-8 w-[1px] bg-gradient-to-b from-transparent via-white/15 to-transparent mx-8 shrink-0" />
-          <div className="flex flex-col items-center justify-center px-3 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/[0.03] backdrop-blur-2xl min-w-[70px] group/status hover:border-emerald-500/40 transition-all duration-500">
-            <div className="relative flex items-center justify-center mb-1 h-1.5">
-              <div className="absolute w-4 h-4 bg-emerald-500/20 rounded-full animate-ping" />
-              <div className="relative w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.8)] transition-all" />
-            </div>
-            <span className="text-[7px] font-black text-emerald-500 tracking-[0.15em] uppercase leading-none">SYSTEM ACTIVE</span>
+          <div className="h-6 w-[1px] bg-white/10 mx-6" />
+          <div className="flex flex-col items-center">
+             <div className="w-1 h-1 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_5px_#10b981]" />
+             <span className="text-[7px] font-black text-emerald-500 tracking-widest mt-1">ACTIVE</span>
           </div>
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Toggle Button */}
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden z-[110] w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+          className="lg:hidden z-[210] relative w-12 h-12 flex flex-col items-center justify-center gap-1.5 focus:outline-none"
+          aria-label="Toggle Menu"
         >
-          <div className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-8 rotate-45 translate-y-2' : 'w-7'}`} />
-          <div className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'w-5 ml-auto'}`} />
-          <div className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-8 -rotate-45 -translate-y-2' : 'w-7'}`} />
+          <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-8 rotate-45 translate-y-2' : 'w-7'}`} />
+          <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'w-5 ml-auto'}`} />
+          <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-8 -rotate-45 -translate-y-2' : 'w-7'}`} />
         </button>
 
-        {/* Mobile Menu Overlay */}
-        <div className={`fixed inset-0 bg-[#020202] z-[105] lg:hidden transition-all duration-500 ease-expo ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
-          <div className="absolute inset-0 opacity-10" style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-            backgroundSize: '40px 40px'
-          }} />
-          
-          <div className="relative h-full flex flex-col p-8 pt-32 overflow-y-auto">
-            {menuItems.map((item) => (
-              <div key={item.id} className="mb-6 last:mb-0">
-                <button 
-                  onClick={() => item.sub ? setActiveDropdown(activeDropdown === item.id ? null : item.id) : handleLinkClick(item.id)}
-                  className={`text-2xl font-black tracking-tight uppercase transition-colors flex items-center justify-between w-full ${
-                    currentView === item.id ? 'text-cyan-400' : 'text-white'
-                  }`}
-                >
-                  {item.label}
-                  {item.sub && (
-                    <svg 
-                      className={`w-5 h-5 transition-transform ${activeDropdown === item.id ? 'rotate-180' : ''}`} 
-                      fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        {/* Mobile Menu Overlay - Absolute Solid Blackout */}
+        <div 
+          className={`fixed inset-0 z-[200] lg:hidden flex flex-col transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+            isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
+          }`}
+          style={{ 
+            backgroundColor: '#000000', 
+            opacity: 1,
+            visibility: isMobileMenuOpen ? 'visible' : 'hidden'
+          }}
+        >
+          <div className="flex-1 flex flex-col justify-center px-10 pt-16">
+            <div className="space-y-0.5 max-h-[85vh] overflow-y-auto scrollbar-hide">
+              {menuItems.map((item, idx) => (
+                <div key={item.id} className="border-b border-white/5 last:border-0">
+                  <div className="flex flex-col">
+                    <button 
+                      onClick={() => item.sub ? setActiveDropdown(activeDropdown === item.id ? null : item.id) : handleLinkClick(item.id)}
+                      className={`text-[9px] font-black tracking-[0.25em] uppercase flex items-center justify-between w-full py-4 transition-colors duration-300 ${
+                        currentView === item.id || (item.sub && activeDropdown === item.id) ? 'text-white' : 'text-zinc-700'
+                      }`}
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  )}
-                </button>
-                
-                {item.sub && activeDropdown === item.id && (
-                  <div className="mt-3 ml-2 space-y-3 border-l border-white/10 pl-5 animate-in slide-in-from-left-4 duration-300">
-                    {item.sub.map((sub, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => { setView(sub.id); setIsMobileMenuOpen(false); }}
-                        className="block text-sm font-bold text-zinc-500 hover:text-white uppercase tracking-wider transition-colors text-left"
-                      >
-                        {sub.label}
-                      </button>
-                    ))}
+                      <span className="flex items-center gap-3">
+                        {currentView === item.id && <div className="w-1 h-1 bg-cyan-400 rounded-full" />}
+                        {item.label}
+                      </span>
+                      {item.sub && (
+                        <svg className={`w-2.5 h-2.5 transition-transform duration-300 ${activeDropdown === item.id ? 'rotate-180 text-cyan-400' : 'text-zinc-800'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      )}
+                    </button>
+                    
+                    {item.sub && activeDropdown === item.id && (
+                      <div className="mb-4 space-y-2.5 border-l border-white/10 ml-0.5 pl-4 animate-in slide-in-from-left-2 duration-300">
+                        {item.sub.map((sub, sIdx) => (
+                          <button
+                            key={sIdx}
+                            onClick={() => handleLinkClick(sub.id)}
+                            className="block text-[7px] font-black text-zinc-300 hover:text-white uppercase tracking-[0.2em] transition-colors py-1 text-left"
+                          >
+                            {sub.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            ))}
-
-            <div className="mt-auto pt-10 border-t border-white/5 flex flex-col gap-6">
-              <div className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-cyan-400/5 border border-cyan-400/20">
-                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-                <span className="text-[10px] font-black text-cyan-400 tracking-[0.2em] uppercase">MOMENTUM NODE ACTIVE</span>
-              </div>
-              <p className="text-[8px] font-black text-zinc-700 uppercase tracking-widest text-center">v2.5_DEPLOYMENT_STABLE</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
