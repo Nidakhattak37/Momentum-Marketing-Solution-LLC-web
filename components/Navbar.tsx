@@ -105,7 +105,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
               >
                 <button 
                   onClick={() => !item.sub && handleLinkClick(item.id)}
-                  className={`flex items-center gap-1.5 text-[9px] font-black tracking-[0.2em] transition-all duration-300 uppercase ${
+                  className={`flex items-center gap-1.5 text-[11px] font-black tracking-[0.2em] transition-all duration-300 uppercase ${
                     currentView === item.id || activeDropdown === item.id ? 'text-white' : 'text-zinc-500 hover:text-white'
                   }`}
                 >
@@ -133,7 +133,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
                               <div className="absolute inset-0 bg-[#00E5FF] -translate-y-full group-hover/sub:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]" />
                             </div>
                             
-                            <span className="text-[9px] font-bold text-zinc-500 group-hover/sub:text-white uppercase tracking-widest transition-all duration-300 group-hover/sub:translate-x-1">
+                            <span className="text-[11px] font-bold text-zinc-500 group-hover/sub:text-white uppercase tracking-widest transition-all duration-300 group-hover/sub:translate-x-1">
                               {sub.label}
                             </span>
                           </div>
@@ -183,7 +183,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
                   <div className="flex flex-col">
                     <button 
                       onClick={() => item.sub ? setActiveDropdown(activeDropdown === item.id ? null : item.id) : handleLinkClick(item.id)}
-                      className={`text-[9px] font-black tracking-[0.25em] uppercase flex items-center justify-between w-full py-4 transition-colors duration-300 ${
+                      className={`text-[11px] font-black tracking-[0.25em] uppercase flex items-center justify-between w-full py-4 transition-colors duration-300 ${
                         currentView === item.id || (item.sub && activeDropdown === item.id) ? 'text-white' : 'text-zinc-800'
                       }`}
                     >
@@ -203,7 +203,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
                           <button
                             key={sIdx}
                             onClick={() => handleLinkClick(sub.id)}
-                            className="block text-[7px] font-black text-zinc-500 hover:text-white uppercase tracking-[0.2em] transition-colors py-1 text-left"
+                            className="block text-[9px] font-black text-zinc-500 hover:text-white uppercase tracking-[0.2em] transition-colors py-1 text-left"
                           >
                             {sub.label}
                           </button>

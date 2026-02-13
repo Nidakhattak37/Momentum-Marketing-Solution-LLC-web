@@ -12,6 +12,7 @@ import WhatWeDo from './components/sections/WhatWeDo.tsx';
 import Industries from './components/sections/Industries.tsx';
 import Services from './components/sections/Services.tsx';
 import LiveStrategist from './components/sections/LiveStrategist.tsx';
+import ClutchReviews from './components/sections/ClutchReviews.tsx';
 import MouseFollower from './components/MouseFollower.tsx';
 
 const App: React.FC = () => {
@@ -111,9 +112,12 @@ const App: React.FC = () => {
           {renderView()}
 
           {(currentView === ViewType.HOME || currentView === ViewType.WHAT_WE_DO || currentView === ViewType.INDUSTRIES || currentView === ViewType.SERVICES) && (
-            <div className="border-t border-white/5">
-               <Contact />
-            </div>
+            <>
+               <ClutchReviews />
+               <div className="border-t border-white/5">
+                  <Contact />
+               </div>
+            </>
           )}
         </div>
       </main>

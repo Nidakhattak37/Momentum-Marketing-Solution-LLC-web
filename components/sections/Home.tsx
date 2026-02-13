@@ -203,7 +203,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
           <div className="lg:col-span-6 lg:pl-16 space-y-6 relative z-10 text-left transition-all">
             <div className="space-y-4 flex flex-col items-start">
               <div className="flex items-center gap-5 animate-in fade-in slide-in-from-left-4 duration-1000">
-                 <div className="p-2.5 border border-white/5 bg-white/[0.01] rounded-lg backdrop-blur-3xl group hover:border-cyan-500/30 transition-all duration-500 shadow-[0_0_20px_rgba(0,0,0,1)] relative overflow-hidden">
+                 <div className="p-2.5 border border-white/5 bg-white/[0.01] rounded-lg backdrop-blur-3xl group hover:border-cyan-500/30 transition-all duration-500 shadow-[0_0_20px_rgba(0,229,255,0.3)] relative overflow-hidden">
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundImage: brandGradient, opacity: 0.1 }} />
                     <svg className="w-5 h-5 text-white group-hover:text-cyan-400 group-hover:scale-110 transition-all relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -247,7 +247,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
             </div>
           </div>
 
-          <div className="lg:col-span-6 relative w-full group animate-in zoom-in duration-1000 delay-900 flex justify-center lg:justify-start lg:-ml-12">
+          <div className="lg:col-span-6 relative w-full group animate-in zoom-in duration-1000 delay-900 flex justify-center lg:justify-start lg:pl-10">
             <div className="absolute -inset-4 opacity-5 rounded-[2rem] group-hover:opacity-15 transition-opacity duration-1000 blur-3xl" style={{ backgroundImage: brandGradient }} />
             <div className="relative bg-[#020202] border border-white/5 rounded-[2.5rem] p-6 lg:p-8 backdrop-blur-3xl shadow-[0_40px_100px_-20px_rgba(0,0,0,1)] transition-all duration-700 hover:scale-[1.01] hover:border-white/10 max-w-sm w-full">
               <div className="flex flex-wrap gap-1.5 mb-6 bg-black/60 p-1 rounded-2xl border border-white/5">
