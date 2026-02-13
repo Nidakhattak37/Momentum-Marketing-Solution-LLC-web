@@ -88,34 +88,37 @@ const App: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#020202] text-gray-100 flex flex-col selection:bg-white/10 selection:text-white cursor-none scanline relative">
+    <div className="min-h-screen bg-[#020202] text-gray-100 flex flex-col selection:bg-white/10 selection:text-white cursor-none relative">
       <MouseFollower />
 
       <Navbar currentView={currentView} setView={setView} />
       
       <main className="flex-1 relative">
         <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[#000000]" />
-          <div className="absolute top-[0%] left-[-10%] w-[70%] h-[70%] bg-cyan-500/[0.03] blur-[200px] rounded-full animate-pulse" style={{ animationDuration: '15s' }} />
-          <div className="absolute inset-0 opacity-[0.05] animate-grid-flow" 
+          {/* Subtle Concentrated Ambient Glows - Navy/Black Mix with strictly #020202 base */}
+          <div className="absolute top-[0%] left-[-15%] w-[90%] h-[90%] bg-blue-950/[0.08] blur-[200px] rounded-full animate-pulse" style={{ animationDuration: '20s' }} />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] bg-indigo-950/[0.05] blur-[180px] rounded-full animate-pulse" style={{ animationDuration: '15s' }} />
+          
+          {/* Polished Grid Overlay */}
+          <div className="absolute inset-0 opacity-[0.015] animate-grid-flow" 
                style={{
-                 backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-                 backgroundSize: '60px 60px'
+                 backgroundImage: `linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)`,
+                 backgroundSize: '140px 140px'
                }} />
         </div>
         
-        <div className="relative z-10 px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="relative z-10">
           {renderView()}
 
           {(currentView === ViewType.HOME || currentView === ViewType.WHAT_WE_DO || currentView === ViewType.INDUSTRIES || currentView === ViewType.SERVICES) && (
-            <div className="mt-12 border-t border-white/5">
+            <div className="border-t border-white/5">
                <Contact />
             </div>
           )}
         </div>
       </main>
 
-      <footer className="bg-[#050505] py-16 border-t border-white/5 relative z-10 px-6 lg:px-10 xl:px-20 overflow-hidden">
+      <footer className="bg-black/95 backdrop-blur-3xl py-16 border-t border-white/5 relative z-10 px-6 lg:px-10 xl:px-20 overflow-hidden">
         <div className="max-w-[1800px] mx-auto">
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 pb-10">
@@ -126,7 +129,7 @@ const App: React.FC = () => {
                 onClick={() => setView(ViewType.HOME)}
               >
                 <div 
-                  className="w-8 h-8 text-white rounded-[4px] flex items-center justify-center font-black transition-all group-hover:rotate-12"
+                  className="w-8 h-8 text-white rounded-[4px] flex items-center justify-center font-black transition-all group-hover:rotate-12 shadow-[0_0_25px_rgba(0,229,255,0.4)]"
                   style={{ background: brandGradient }}
                 >M</div>
                 <span className="text-xl font-black uppercase tracking-[-0.05em] text-white">MOMENTUM.</span>
@@ -197,11 +200,11 @@ const App: React.FC = () => {
 
           {/* Legal Bar */}
           <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <span className="text-[9px] font-black text-zinc-700 tracking-[0.4em] uppercase">© 2025 MOMENTUM MARKETING SOLUTION LLC</span>
+            <span className="text-[9px] font-black text-zinc-900 tracking-[0.4em] uppercase">© 2025 MOMENTUM MARKETING SOLUTION LLC</span>
             
             <div className="flex gap-8">
-               <a href="#" className="text-[10px] font-bold text-zinc-700 hover:text-white transition-colors uppercase tracking-[0.2em]">Privacy Policy</a>
-               <a href="#" className="text-[10px] font-bold text-zinc-700 hover:text-white transition-colors uppercase tracking-[0.2em]">Terms and Conditions</a>
+               <a href="#" className="text-[10px] font-bold text-zinc-800 hover:text-white transition-colors uppercase tracking-[0.2em]">Privacy Policy</a>
+               <a href="#" className="text-[10px] font-bold text-zinc-800 hover:text-white transition-colors uppercase tracking-[0.2em]">Terms and Conditions</a>
             </div>
           </div>
 
