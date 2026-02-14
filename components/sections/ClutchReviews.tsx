@@ -33,7 +33,7 @@ const reviews = [
 
 const ClutchReviews: React.FC = () => {
   return (
-    <section className="w-full py-20 px-10 md:px-24 lg:px-40 bg-transparent overflow-hidden">
+    <section className="w-full pt-0 pb-20 px-10 md:px-24 lg:px-40 bg-[#020a1a] overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">

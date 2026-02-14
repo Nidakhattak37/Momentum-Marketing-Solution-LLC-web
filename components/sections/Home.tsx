@@ -1,6 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { ViewType } from '../../types.ts';
+import Infrastructure from './Infrastructure.tsx';
+import GrowthMethodology from './GrowthMethodology.tsx';
+import ExpertiseVerticals from './ExpertiseVerticals.tsx';
 
 interface HomeProps {
   setView: (view: ViewType) => void;
@@ -196,8 +199,8 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
   ];
 
   return (
-    <div className="w-full pb-40 overflow-hidden bg-[#020202]">
-      {/* Hero Section - Compact text size, first col moved right, graph col moved left */}
+    <div className="w-full pb-0 overflow-hidden bg-[#020202]">
+      {/* Hero Section */}
       <section className="min-h-[70vh] flex items-center relative overflow-hidden bg-[#020202] mb-6 lg:mb-8">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-16 w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-10 py-6 lg:py-0">
           <div className="lg:col-span-6 lg:pl-16 space-y-6 relative z-10 text-left transition-all">
@@ -237,13 +240,6 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                 <span className="relative">Live Briefing</span>
                 <div className="relative w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse group-hover:animate-ping" />
               </button>
-
-              <a href="tel:+1888MOMENTUM" className="flex items-center gap-2.5 text-white/90 hover:text-white transition-all text-[10px] font-black uppercase tracking-[0.15em] group/call drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
-                 <svg className="w-3.5 h-3.5 text-cyan-400 group-hover/call:scale-110 group-hover/call:rotate-12 transition-all" fill="currentColor" viewBox="0 0 24 24">
-                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                 </svg>
-                 <span>Call Now</span>
-              </a>
             </div>
           </div>
 
@@ -286,7 +282,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
         </div>
       </section>
 
-      {/* CORE ECOSYSTEM SLIDER: 'Shiny white' text labels and reduced vertical spacing */}
+      {/* CORE ECOSYSTEM SLIDER */}
       <section className="py-6 lg:py-8 bg-black border-y border-white/5 overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-10 md:px-24 lg:px-40 mb-4 flex items-center gap-4">
           <div className="h-[1px] w-8 bg-pink-500/20" />
@@ -305,7 +301,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
         </div>
       </section>
 
-      {/* CORE EXPERTISE: Tightened vertical padding */}
+      {/* CORE EXPERTISE */}
       <section className="py-16 lg:py-20 bg-black overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-10 md:px-24 lg:px-40">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-10 mb-12 animate-in fade-in slide-in-from-bottom-6 duration-1000">
@@ -356,6 +352,12 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
           </div>
         </div>
       </section>
+
+      <Infrastructure />
+      
+      <GrowthMethodology />
+
+      <ExpertiseVerticals />
 
       {/* Styles for animations */}
       <style>{`
