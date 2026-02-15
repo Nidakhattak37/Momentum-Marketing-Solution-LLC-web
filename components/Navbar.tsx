@@ -71,7 +71,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
   };
 
   return (
-    <nav className={`sticky top-0 z-[100] border-b border-white/5 px-6 lg:px-10 py-4 lg:py-5 transition-all duration-700 ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} ${isMobileMenuOpen ? 'bg-[#020202]' : 'bg-[#020202]/90 backdrop-blur-2xl'}`}>
+    <nav className={`sticky top-0 z-[100] border-b border-white/5 px-6 lg:px-10 py-4 lg:py-5 transition-all duration-700 ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} ${isMobileMenuOpen ? 'bg-[#000000]' : 'bg-[#020202]/90 backdrop-blur-2xl'}`}>
       <div className="max-w-[1800px] mx-auto flex items-center justify-between relative">
         
         {/* Logo Section */}
@@ -171,7 +171,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
             isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
           }`}
           style={{ 
-            backgroundColor: '#020202', 
+            backgroundColor: '#000000', 
             opacity: 1,
             visibility: isMobileMenuOpen ? 'visible' : 'hidden'
           }}
@@ -184,14 +184,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
                     <button 
                       onClick={() => item.sub ? setActiveDropdown(activeDropdown === item.id ? null : item.id) : handleLinkClick(item.id)}
                       className={`text-[11px] font-black tracking-[0.25em] uppercase flex items-center justify-between w-full py-4 transition-colors duration-300 ${
-                        currentView === item.id || (item.sub && activeDropdown === item.id) ? 'text-white' : 'text-zinc-800'
+                        currentView === item.id || (item.sub && activeDropdown === item.id) ? 'text-white' : 'text-zinc-500'
                       }`}
                     >
                       <span className="flex items-center gap-3">
                         {item.label}
                       </span>
                       {item.sub && (
-                        <svg className={`w-2.5 h-2.5 transition-transform duration-300 ${activeDropdown === item.id ? 'rotate-180 text-cyan-400' : 'text-zinc-900'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className={`w-2.5 h-2.5 transition-transform duration-300 ${activeDropdown === item.id ? 'rotate-180 text-cyan-400' : 'text-zinc-600'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                         </svg>
                       )}
