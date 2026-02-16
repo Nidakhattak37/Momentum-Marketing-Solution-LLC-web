@@ -15,6 +15,7 @@ import Services from './components/sections/Services.tsx';
 import LiveStrategist from './components/sections/LiveStrategist.tsx';
 import ClutchReviews from './components/sections/ClutchReviews.tsx';
 import MouseFollower from './components/MouseFollower.tsx';
+import PrivacyPolicy from './components/sections/PrivacyPolicy.tsx';
 
 const App: React.FC = () => {
   const [currentView, setView] = useState<ViewType>(ViewType.HOME);
@@ -45,6 +46,8 @@ const App: React.FC = () => {
         return <Services />;
       case ViewType.LIVE_SYNC:
         return <LiveStrategist />;
+      case ViewType.PRIVACY:
+        return <PrivacyPolicy />;
       default:
         return <Home setView={setView} />;
     }
@@ -56,7 +59,6 @@ const App: React.FC = () => {
       links: [
         { label: 'Our Process', id: ViewType.WHAT_WE_DO },
         { label: 'Why Momentum', id: ViewType.WHY_MOMENTUM },
-        { label: 'Case Studies', id: ViewType.WHAT_WE_DO },
       ]
     },
     { 
@@ -161,7 +163,7 @@ const App: React.FC = () => {
                   {group.links.map((link, j) => (
                     <li key={j}>
                       <button 
-                        onClick={() => setView(link.id)}
+                        onClick={() => setView(link.id as ViewType)}
                         className="text-[11px] font-semibold text-zinc-500 hover:text-white transition-colors tracking-wide block text-left"
                       >
                         {link.label}
@@ -213,8 +215,12 @@ const App: React.FC = () => {
             <span className="text-[9px] font-black text-zinc-900 tracking-[0.4em] uppercase">© 2025 MOMENTUM MARKETING SOLUTION LLC</span>
             
             <div className="flex gap-8">
-               <a href="#" className="text-[10px] font-bold text-zinc-800 hover:text-white transition-colors uppercase tracking-[0.2em]">Privacy Policy</a>
-               <a href="#" className="text-[10px] font-bold text-zinc-800 hover:text-white transition-colors uppercase tracking-[0.2em]">Terms and Conditions</a>
+               <button 
+                 onClick={() => setView(ViewType.PRIVACY)}
+                 className="text-[10px] font-bold text-white hover:text-cyan-400 transition-colors uppercase tracking-[0.2em]"
+               >
+                 Privacy Policy
+               </button>
             </div>
           </div>
 
