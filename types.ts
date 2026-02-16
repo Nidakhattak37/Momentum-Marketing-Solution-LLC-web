@@ -3,6 +3,7 @@
 export enum ViewType {
   HOME = 'home',
   WHAT_WE_DO = 'what-we-do',
+  WHY_MOMENTUM = 'why-momentum',
   SERVICES = 'services',
   INDUSTRIES = 'industries',
   CONTACT = 'contact',

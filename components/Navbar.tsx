@@ -33,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
       id: 'wwd',
       sub: [
         { label: 'OUR PROCESS', id: ViewType.WHAT_WE_DO },
-        { label: 'WHY MOMENTUM', id: ViewType.WHAT_WE_DO },
+        { label: 'WHY MOMENTUM', id: ViewType.WHY_MOMENTUM },
         { label: 'CASE STUDIES', id: ViewType.WHAT_WE_DO },
       ]
     },

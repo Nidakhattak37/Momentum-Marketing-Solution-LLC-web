@@ -9,6 +9,7 @@ import VoiceStudio from './components/sections/VoiceStudio.tsx';
 import Assistant from './components/sections/Assistant.tsx';
 import Contact from './components/sections/Contact.tsx';
 import WhatWeDo from './components/sections/WhatWeDo.tsx';
+import WhyMomentum from './components/sections/WhyMomentum.tsx';
 import Industries from './components/sections/Industries.tsx';
 import Services from './components/sections/Services.tsx';
 import LiveStrategist from './components/sections/LiveStrategist.tsx';
@@ -36,6 +37,8 @@ const App: React.FC = () => {
         return <Contact />;
       case ViewType.WHAT_WE_DO:
         return <WhatWeDo />;
+      case ViewType.WHY_MOMENTUM:
+        return <WhyMomentum />;
       case ViewType.INDUSTRIES:
         return <Industries />;
       case ViewType.SERVICES:
@@ -52,7 +55,7 @@ const App: React.FC = () => {
       title: 'WHAT WE DO', 
       links: [
         { label: 'Our Process', id: ViewType.WHAT_WE_DO },
-        { label: 'Why Momentum', id: ViewType.WHAT_WE_DO },
+        { label: 'Why Momentum', id: ViewType.WHY_MOMENTUM },
         { label: 'Case Studies', id: ViewType.WHAT_WE_DO },
       ]
     },
@@ -111,13 +114,16 @@ const App: React.FC = () => {
         <div className="relative z-10">
           {renderView()}
 
-          {(currentView === ViewType.HOME || currentView === ViewType.WHAT_WE_DO || currentView === ViewType.INDUSTRIES || currentView === ViewType.SERVICES) && (
-            <>
-               <ClutchReviews />
-               <div className="border-t border-white/5">
-                  <Contact />
-               </div>
-            </>
+          {/* Logic to show ClutchReviews on specified pages only */}
+          {(currentView === ViewType.HOME || currentView === ViewType.INDUSTRIES || currentView === ViewType.SERVICES) && (
+            <ClutchReviews />
+          )}
+
+          {/* Logic to show Contact form on specified pages */}
+          {(currentView === ViewType.HOME || currentView === ViewType.WHAT_WE_DO || currentView === ViewType.WHY_MOMENTUM || currentView === ViewType.INDUSTRIES || currentView === ViewType.SERVICES) && (
+            <div className="border-t border-white/5">
+               <Contact />
+            </div>
           )}
         </div>
       </main>
@@ -145,7 +151,7 @@ const App: React.FC = () => {
             </div>
 
             {/* Columns 2-4: Navigation Links */}
-            {footerNav.map((group, i) => ( group.title === 'SERVICES' ? (
+            {footerNav.map((group, i) => (
               <div key={i} className="space-y-6">
                 <h4 className="text-[10px] font-black text-white uppercase tracking-[0.3em] flex items-center gap-2">
                   <div className="w-[2px] h-[2px] bg-cyan-400 rounded-full" />
@@ -164,26 +170,7 @@ const App: React.FC = () => {
                   ))}
                 </ul>
               </div>
-            ) : (
-              <div key={i} className="space-y-6">
-                <h4 className="text-[10px] font-black text-white uppercase tracking-[0.3em] flex items-center gap-2">
-                  <div className="w-[2px] h-[2px] bg-cyan-400 rounded-full" />
-                  {group.title}
-                </h4>
-                <ul className="space-y-3.5">
-                  {group.links.map((link, j) => (
-                    <li key={j}>
-                      <button 
-                        onClick={() => setView(link.id)}
-                        className="text-[11px] font-semibold text-zinc-500 hover:text-white transition-colors tracking-wide block text-left"
-                      >
-                        {link.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )))}
+            ))}
 
             {/* Column 5: CONTACT */}
             <div className="space-y-6">
