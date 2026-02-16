@@ -41,14 +41,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
       label: 'SERVICES', 
       id: 'srv',
       sub: [
-        { label: 'SEO Architecture', id: ViewType.SERVICES },
-        { label: 'Social Media Hub', id: ViewType.SERVICES },
+        { label: 'Search Engine Optimization', id: ViewType.SERVICES },
+        { label: 'Social Media Marketing', id: ViewType.SERVICES },
         { label: 'Content Strategy', id: ViewType.SERVICES },
         { label: 'Web Development', id: ViewType.SERVICES },
-        { label: 'Mobile App Logic', id: ViewType.SERVICES },
-        { label: 'Brand Engineering', id: ViewType.SERVICES },
+        { label: 'Mobile App Development', id: ViewType.SERVICES },
+        { label: 'Graphics design', id: ViewType.SERVICES },
         { label: 'Market Analytics', id: ViewType.SERVICES },
-        { label: 'PPC Performance', id: ViewType.SERVICES },
+        { label: 'Pay-Per-Click (PPC)', id: ViewType.SERVICES },
       ]
     },
     { 
@@ -71,7 +71,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
   };
 
   return (
-    <nav className={`sticky top-0 z-[100] border-b border-white/5 px-6 lg:px-10 py-4 lg:py-5 transition-all duration-700 ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} ${isMobileMenuOpen ? 'bg-[#000000]' : 'bg-[#020202]/90 backdrop-blur-2xl'}`}>
+    <nav className={`sticky top-0 z-[200] border-b border-white/5 px-6 lg:px-10 py-4 lg:py-5 transition-all duration-700 ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} ${isMobileMenuOpen ? 'bg-[#000000]' : 'bg-[#020202]/90 backdrop-blur-2xl'}`}>
       <div className="max-w-[1800px] mx-auto flex items-center justify-between relative">
         
         {/* Logo Section */}

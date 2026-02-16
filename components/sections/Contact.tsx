@@ -43,6 +43,17 @@ const Contact: React.FC = () => {
     },
   ];
 
+  const services = [
+    { label: 'Search Engine Optimization', value: 'seo' },
+    { label: 'Social Media Marketing', value: 'social' },
+    { label: 'Content Strategy', value: 'content' },
+    { label: 'Web Development', value: 'web' },
+    { label: 'Mobile App Development', value: 'mobile' },
+    { label: 'Graphics design', value: 'graphics' },
+    { label: 'Market Analytics', value: 'analytics' },
+    { label: 'Pay-Per-Click (PPC)', value: 'ppc' },
+  ];
+
   return (
     <div id="contact-section" className="w-full py-24 animate-in fade-in duration-1000 px-6 bg-transparent">
       <div className="max-w-[1000px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
@@ -69,7 +80,7 @@ const Contact: React.FC = () => {
           <div className="space-y-5 pt-2">
             {contactNodes.map((node) => (
               <div key={node.id} className="flex flex-col space-y-1">
-                <span className="text-[7px] font-black text-zinc-800 uppercase tracking-[0.2em]">{node.label}</span>
+                <span className="text-[7px] font-black text-zinc-500 uppercase tracking-[0.2em]">{node.label}</span>
                 <div className="flex items-center gap-3">
                   <span className="text-cyan-400/60">{node.icon}</span>
                   <p className="text-sm font-bold text-zinc-500 hover:text-white transition-colors cursor-pointer">{node.value}</p>
@@ -94,7 +105,7 @@ const Contact: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-1.5">
-                    <label className="text-[8px] font-black text-zinc-800 uppercase tracking-widest ml-1">Full Name</label>
+                    <label className="text-[8px] font-black text-zinc-500 uppercase tracking-widest ml-1">Full Name</label>
                     <input 
                       required type="text" value={formState.name}
                       onChange={e => setFormState({...formState, name: e.target.value})}
@@ -103,7 +114,7 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[8px] font-black text-zinc-800 uppercase tracking-widest ml-1">Email Address</label>
+                    <label className="text-[8px] font-black text-zinc-500 uppercase tracking-widest ml-1">Email Address</label>
                     <input 
                       required type="email" value={formState.email}
                       onChange={e => setFormState({...formState, email: e.target.value})}
@@ -115,7 +126,7 @@ const Contact: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-1.5">
-                    <label className="text-[8px] font-black text-zinc-800 uppercase tracking-widest ml-1">Organization</label>
+                    <label className="text-[8px] font-black text-zinc-500 uppercase tracking-widest ml-1">Organization</label>
                     <input 
                       type="text" value={formState.org}
                       onChange={e => setFormState({...formState, org: e.target.value})}
@@ -124,17 +135,18 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[8px] font-black text-zinc-800 uppercase tracking-widest ml-1">Service</label>
+                    <label className="text-[8px] font-black text-zinc-500 uppercase tracking-widest ml-1">Service</label>
                     <div className="relative">
                       <select 
                         value={formState.service}
                         onChange={e => setFormState({...formState, service: e.target.value})}
                         className="w-full bg-transparent border-b border-white/5 py-2 text-xs font-bold text-white focus:border-white/20 outline-none transition-all cursor-pointer appearance-none uppercase"
                       >
-                        <option value="seo" className="bg-black">SEO Architecture</option>
-                        <option value="ppc" className="bg-black">PPC Velocity</option>
-                        <option value="dev" className="bg-black">Web Engineering</option>
-                        <option value="ai" className="bg-black">AI Creative Lab</option>
+                        {services.map((srv) => (
+                          <option key={srv.value} value={srv.value} className="bg-black">
+                            {srv.label}
+                          </option>
+                        ))}
                       </select>
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-800">
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" /></svg>
@@ -144,7 +156,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[8px] font-black text-zinc-800 uppercase tracking-widest ml-1">Message Body</label>
+                  <label className="text-[8px] font-black text-zinc-500 uppercase tracking-widest ml-1">Message Body</label>
                   <textarea 
                     required rows={2} value={formState.message}
                     onChange={e => setFormState({...formState, message: e.target.value})}

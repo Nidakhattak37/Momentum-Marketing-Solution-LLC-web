@@ -59,8 +59,8 @@ const App: React.FC = () => {
     { 
       title: 'SERVICES', 
       links: [
-        { label: 'SEO Architecture', id: ViewType.SERVICES },
-        { label: 'Social Media Hub', id: ViewType.SERVICES },
+        { label: 'Search Engine Optimization', id: ViewType.SERVICES },
+        { label: 'Social Media Marketing', id: ViewType.SERVICES },
         { label: 'Content Strategy', id: ViewType.SERVICES },
         { label: 'Web Development', id: ViewType.SERVICES },
       ]
@@ -145,7 +145,7 @@ const App: React.FC = () => {
             </div>
 
             {/* Columns 2-4: Navigation Links */}
-            {footerNav.map((group, i) => (
+            {footerNav.map((group, i) => ( group.title === 'SERVICES' ? (
               <div key={i} className="space-y-6">
                 <h4 className="text-[10px] font-black text-white uppercase tracking-[0.3em] flex items-center gap-2">
                   <div className="w-[2px] h-[2px] bg-cyan-400 rounded-full" />
@@ -164,7 +164,26 @@ const App: React.FC = () => {
                   ))}
                 </ul>
               </div>
-            ))}
+            ) : (
+              <div key={i} className="space-y-6">
+                <h4 className="text-[10px] font-black text-white uppercase tracking-[0.3em] flex items-center gap-2">
+                  <div className="w-[2px] h-[2px] bg-cyan-400 rounded-full" />
+                  {group.title}
+                </h4>
+                <ul className="space-y-3.5">
+                  {group.links.map((link, j) => (
+                    <li key={j}>
+                      <button 
+                        onClick={() => setView(link.id)}
+                        className="text-[11px] font-semibold text-zinc-500 hover:text-white transition-colors tracking-wide block text-left"
+                      >
+                        {link.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )))}
 
             {/* Column 5: CONTACT */}
             <div className="space-y-6">
